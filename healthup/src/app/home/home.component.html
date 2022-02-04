@@ -1,73 +1,97 @@
 
 
-    <div class="container-fluid h100">
-
-      <!-- ENCABEZADO -->
-      <div class="row"> <!-- start row-->
-        <header class="text-center fondoAzulClaro h100">
-          <a href=""><img src="../../assets/img/HealthUp-modified.png" class="name"></a>
-        </header>
-      </div>  <!-- end row-->
-
-
-      <!-- BARRA DE NAVEGACIÓN -->
-      <div class="row fondoGris">  <!-- start row-->
-
-        <nav class="navbar navbar-expand-sm navbar-dark py-2">  <!-- py-0 para quitar el padding top-bottom que trae por defecto la navBar-->
-          <div class="container-fluid">
-            <a class="navbar-brand" routerLink="/home">
-              <img src="../../assets/img/muscle.png" class="icon" >
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-              <span class="navbar-toggler-icon  "></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link text-black" href="galleryRecipes.html">Tour and Benefits</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-black" href="newRecipe.html">Sign up</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-black" href="newRecipe.html">Log in</a>
-                </li>
-
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-      </div>  <!-- end row-->
-
-      <!-- CONTENIDO -->
-      <div class="row justify-content-center p-1 my-3">
-        contenido
+  <!--CARRUSEL-->
+  <div class="row p-1 my-3 centrar">
+    <div>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
       </div>
-
-
-
-      <!-- PIE DE PÁGINA -->
-
-      <div class="row">
-        <div class="col-12 px-0">
-
-          <footer class="text-center py-0" >
-            <div class="text-center text-dark" >
-              <a> Privacity Policy</a>
-              <br>
-              <a>  Legal Notice</a>
-            </div>
-          </footer>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
+          <img src="../../assets/img/spaguet.jpg" class="img-fluid w-50 h-40" alt="...">
         </div>
 
+        <div class="carousel-item" data-bs-interval="3000">
+          <img src="../../assets/img/girl.jpg" class="img-fluid w-50 h-40" alt="...">
+
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+          <img src="../../assets/img/toasts.jpg" class="img-fluid w-50 h-40" alt="...">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+          <img src="../../assets/img/checklist.jpg" class="img-fluid w-50 h-40" alt="...">
+        </div>
       </div>
 
+    </div>
+  </div>
 
 
-    </div> <!-- end container-fluid-->
+  <!-- CONTENIDO -->
+  <div class="row mt-5 centrar">
+    <div class="card-deck justify-content-center d-flex centrar">
+      <div class="card mx-3" style="width: 18rem; display: inline-block">
+        <img
+          src="../../assets/img/selfCare.jpg"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+
+      <div class="card mx-3" style="width: 18rem; display: inline-block">
+        <img
+          src="../../assets/img/selfCare.jpg"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+
+      <div class="card mx-3" style="width: 18rem; display: inline-block">
+        <img
+          src="../../assets/img/selfCare.jpg"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+    </div>
 
 
 
 
+    <!-- PIE DE PÁGINA -->
+
+    <div class="row mt-5">
+      <div class="col-12 px-0">
+        <footer class="text-center py-0">
+          <div class="text-center text-dark">
+            <a> Privacity Policy</a>
+            <br />
+            <a> Legal Notice</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
 

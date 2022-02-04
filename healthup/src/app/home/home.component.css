@@ -23,3 +23,18 @@
   max-width: 40px;
   height: auto;
 }
+
+.hoverZoom:hover{
+  transform: scale(1.1);
+  cursor:pointer;
+}
+
+.img{
+  width: 30%;
+}
+
+.centrar{
+
+  text-align: center;
+}
+

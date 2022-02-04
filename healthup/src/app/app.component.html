@@ -1,3 +1,61 @@
 <!--Botones para sign up, log in ...-->
-<!--No hay menú compartido por toda la app, solo por la parte interna del usuario una vez se loguea-->
-<app-home></app-home>
+<div class="container-fluid h100">
+ <!-- ENCABEZADO -->
+ <div class="row">
+  <!-- start row-->
+  <header class="text-center fondoAzulClaro h100">
+    <a href=""
+      ><img src="../../assets/img/HealthUp-modified.png" class="name"
+    /></a>
+  </header>
+</div>
+<!-- end row-->
+
+<!-- BARRA DE NAVEGACIÓN / menú -->
+<div class="row fondoGris">
+
+  <nav class="navbar navbar-expand-sm navbar-dark py-2">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">
+        <img src="../../assets/img/muscle.png" class="icon hoverZoom" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item hoverZoom">
+            <a class="nav-link text-black hover-zoom" routerLink="/home"
+              >Tour and Benefits</a
+            ><!--Lleva a más abajo-->
+          </li>
+          <li class="nav-item hoverZoom">
+            <a
+              class="nav-link text-black mx-md-3 mx-sm-3"
+              routerLink="/signUp"
+              >Sign up</a
+            >
+          </li>
+          <li class="nav-item hoverZoom">
+            <a class="nav-link text-black" routerLink="/logIn"
+              >Log in</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="row my-4">
+  <div >
+    <router-outlet></router-outlet><!--NO SIRVE PARA LAS RUTAS HIJAS-->
+  </div>
+</div>
+
+</div>
+

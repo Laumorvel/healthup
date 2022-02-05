@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardGuard } from './auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -8,7 +9,7 @@ const routes: Routes = [
       import('./shared/shared.module').then((m) => m.SharedModule),
   },
   {
-    path: 'home',
+    path: '',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
       import('./sign-up/sign-up.module').then((m) => m.SignUpModule),
   },
   {
-    path: 'userDashboard',
+    path: 'userDashboard', canActivate:[AuthGuardGuard], //para que no se pueda acceder directamente al dashboard escribiendo la url
     loadChildren: () =>
       import('./user-dashboard/user-dashboard.module').then(
         (m) => m.UserDashboardModule

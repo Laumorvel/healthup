@@ -36,3 +36,8 @@
 .logo{
   width: 9%;
 }
+
+.navbar-toggler-icon{
+  background-color: black;
+  border-radius: 15px;
+}

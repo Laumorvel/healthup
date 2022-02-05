@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthResponse } from '../interfaces/interfaces';
+import { AuthResponse, ErrorResponse } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +12,17 @@ export class AuthServiceService {
   constructor(private http: HttpClient) {}
 
 
-  login(email:string,password:string){
+  login(username:string,password:string){
     const url = `${this.baseUrl}/auth/login`;
     const body = {
-      'email': email,
+      'username': username,
       'password': password
     }
     return this.http.post<AuthResponse>(url, body);
   }
 
   validarToken():Observable<AuthResponse>{
-    const url = `${ this.baseUrl }/products`;
+    const url = `${ this.baseUrl }/login`;
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '' );
 

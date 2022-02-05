@@ -1,1 +1,43 @@
-<p>shared works!</p>
+
+<!-- BARRA DE NAVEGACIÓN / PARA EL DASHBOARD -->
+<div class="row fondoGris">
+
+  <nav class="navbar navbar-expand-sm navbar-dark py-2">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">
+        <img src="../../assets/img/muscle.png" class="icon hoverZoom" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item hoverZoom">
+            <a class="nav-link text-black hover-zoom" routerLink="/home"
+              >Tour and Benefits</a
+            ><!--Lleva a más abajo-->
+          </li>
+          <li class="nav-item hoverZoom">
+            <a
+              class="nav-link text-black mx-md-3 mx-sm-3"
+              routerLink="/signUp"
+              >Sign up</a
+            >
+          </li>
+
+          <!--Login-->
+          <li class="nav-item hoverZoom">
+            <a class="nav-link text-black" routerLink="/logIn"
+              >Log in</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

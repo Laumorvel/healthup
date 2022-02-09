@@ -23,7 +23,7 @@ const routes: Routes = [
       import('./sign-up/sign-up.module').then((m) => m.SignUpModule),
   },
   {
-    path: 'userDashboard', canActivate:[AuthGuardGuard], //para que no se pueda acceder directamente al dashboard escribiendo la url
+    path: 'userDashboard/:id', canActivate:[AuthGuardGuard], //para que no se pueda acceder directamente al dashboard escribiendo la url
     loadChildren: () =>
       import('./user-dashboard/user-dashboard.module').then(
         (m) => m.UserDashboardModule

@@ -18,22 +18,26 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item hoverZoom">
-            <a class="nav-link text-black hover-zoom" routerLink="/home"
-              >Tour and Benefits</a
-            ><!--Lleva a más abajo-->
+            <a class="nav-link text-black hover-zoom" routerLink="/#"
+              >Tracker</a
+            >
+          </li>
+          <li class="nav-item hoverZoom">
+            <a class="nav-link text-black hover-zoom" routerLink="/userDashboard/{{userId}}"
+              >Dashboard</a
+            >
           </li>
           <li class="nav-item hoverZoom">
             <a
               class="nav-link text-black mx-md-3 mx-sm-3"
-              routerLink="/signUp"
-              >Sign up</a
+              routerLink="#"
+              >Contact Us</a
             >
           </li>
-
           <!--Login-->
           <li class="nav-item hoverZoom">
-            <a class="nav-link text-black" routerLink="/logIn"
-              >Log in</a
+            <a class="nav-link text-black" routerLink="/" (click)="logout()"
+              >Logout</a
             >
           </li>
         </ul>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shared',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SharedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
+  userId = localStorage.getItem("userId");
+logout(){
+  localStorage.clear();
+  this.router.navigateByUrl('/');
+}
 }

@@ -1,1 +1,113 @@
-<p>sign-up works!</p>
+<h1 class="text-center mt-4">SIGN UP FORM</h1>
+<hr>
+
+<div class="row">
+    <div class="col">
+
+        <form autocomplete="off"
+              [formGroup]="miFormulario"
+              (ngSubmit)="submitFormulario()">
+
+            <!-- Name -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="name">
+
+                    <span class="form-text text-danger"
+                          *ngIf="campoNoValido('name')">
+                          {{nameError}}
+                    </span>
+                </div>
+            </div>
+
+            <!--Surname-->
+            <div class="row mb-3">
+              <label class="col-sm-3 col-form-label">Surname</label>
+              <div class="col-sm-9">
+                  <input type="text"
+                         class="form-control"
+                         formControlName="surname">
+
+                  <span class="form-text text-danger"
+                        *ngIf="campoNoValido('surname')">
+                      {{surnameError}}
+                  </span>
+              </div>
+          </div>
+
+            <!-- Email -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email"
+                           class="form-control"
+                           formControlName="email">
+                    <span class="form-text text-danger"
+                           *ngIf="campoNoValido('email')">
+                        {{ emailErrorMsg }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="username">
+                    <span class="form-text text-danger"
+                           *ngIf="campoNoValido('username')">
+                           {{usernameError}}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                           class="form-control"
+                           formControlName="password">
+
+                    <span class="form-text text-danger"
+                           *ngIf="campoNoValido('password')">
+                         Passwords must contain at least 6 characters.
+                    </span>
+                </div>
+            </div>
+
+            <!-- Password2 -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Confirm Password</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                           class="form-control"
+                           formControlName="password2">
+
+                    <span class="form-text text-danger"
+                           *ngIf="campoNoValido('password2')">
+                          Both passwords must be equal.
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col"><!--Solo se activa cuando el formulario es válido-->
+                    <button class="btn btn-primary float-end"
+                            [disabled]="!miFormulario.pending"
+                            type="submit">
+                        Signup
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>

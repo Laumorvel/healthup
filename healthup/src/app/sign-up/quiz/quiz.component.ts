@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'app-quiz',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizComponent implements OnInit {
 
+
+  nombre:string = "false";
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
 
 }

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthResponse, User } from '../interfaces/interfaces';
-import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +19,8 @@ export class AuthServiceService {
       'password': password
     }
     const opcionHeader = new HttpHeaders();
-    opcionHeader.append('Access-Control-Allow-Origin','*');
-    return this.http.post<AuthResponse>(url, body, {headers:opcionHeader});
+    //opcionHeader.append('Access-Control-Allow-Origin','*');
+    return this.http.post<AuthResponse>(url, body);
   }
 
   validarToken():Observable<AuthResponse>{
@@ -35,14 +34,12 @@ export class AuthServiceService {
   }
 
   //Método para poder tener el id de vuelta del usuario
-  loginGetIdUser(username:string){
-    const url = `${this.baseUrl}/auth/loginGetIdUser`;
-    const body = {
-      'username': username
-    }
-    const opcionHeader = new HttpHeaders();
-    opcionHeader.append('Access-Control-Allow-Origin','*');
-    return this.http.post<AuthResponse>(url, body, {headers:opcionHeader});
+  loginGetIdUser(){
+    const url = `${this.baseUrl}/user`;
+    let token = JSON.parse(<string>localStorage.getItem('jwt'));
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`);
+    return this.http.get<AuthResponse>(url, {headers});
   }
 
 
@@ -53,4 +50,16 @@ export class AuthServiceService {
     opcionHeader.append('Access-Control-Allow-Origin','*');
     return this.http.post<AuthResponse>(url, body, {headers:opcionHeader});
   }
+
+  getToken(email:string){
+    const url = `${this.baseUrl}/auth/token`;
+    const opcionHeader = new HttpHeaders();
+    opcionHeader.append('Access-Control-Allow-Origin','*');
+    const body = {
+      'email': email
+    }
+    return this.http.post<AuthResponse>(url, body, {headers:opcionHeader});
+  }
+
+  ///users/email --> hacer la petición
 }

@@ -5,6 +5,7 @@ import { emailValidatorService } from '../services/emailValidator.service';
 import { UsernameValidatorService } from '../services/username-validator.service';
 import { User } from '../interfaces/interfaces';
 import { AuthServiceService } from '../services/auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,8 +18,10 @@ export class SignUpComponent implements OnInit {
     private validatorService: ValidatorService,
     private emailValidator: emailValidatorService,
     private usernameValidator: UsernameValidatorService,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private router: Router
   ) {}
+
 
   miFormulario: FormGroup = this.fb.group(
     {
@@ -137,6 +140,9 @@ export class SignUpComponent implements OnInit {
       username: '',
       password: '',
     });
+
+    this.router.navigateByUrl('/signUp/quiz');
+
     //this.miFormulario.markAllAsTouched();
 
   }

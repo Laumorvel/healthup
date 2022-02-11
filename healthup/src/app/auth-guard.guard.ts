@@ -18,7 +18,7 @@ export class AuthGuardGuard implements CanActivate {
 
       return this.authService.validarToken().pipe(//devuelve la respuesta del método
         map(resp => {
-          console.log(resp);
+          console.log(`RESPUESTA DEL GUARDIÁN: ${resp}`);
           return true;
         }),
         catchError(err => {

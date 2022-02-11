@@ -24,25 +24,20 @@ export class LogInComponent implements OnInit {
       next: (resp) => {
         console.log(resp);
         localStorage.setItem('jwt', JSON.stringify(resp.access_token));
-       // console.log(resp.userId);
-       // localStorage.setItem('userId', JSON.stringify(resp.userId));
-        //this.router.navigateByUrl(`/userDashboard/${resp.userId}`);
-        this.getIdUser(this.username);
+        this.getIdUser();//envío también el id del usuario logueado
       },
       error: (err) => {
         console.log(err.message);
-        Swal.fire('Error', err.error.message,'error');//No me devuelve los dos tipos de mensajes de la fake api, solo el original
+        Swal.fire('Error', err.error.message, 'error');
       },
     });
   }
 
-  getIdUser(username: string){
-    this.authService.loginGetIdUser(username).subscribe({
-
-    })
-    // console.log(resp.userId);
-       // localStorage.setItem('userId', JSON.stringify(resp.userId));
-        //this.router.navigateByUrl(`/userDashboard/${resp.userId}`);
+  getIdUser() {
+    this.authService.loginGetIdUser().subscribe((resp) => {
+      console.log(resp);
+      localStorage.setItem('userId', JSON.stringify(resp));
+      this.router.navigateByUrl(`/userDashboard/${resp}`);
+    });
   }
-
 }

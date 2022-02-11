@@ -44,6 +44,7 @@
                 <div class="col-sm-9">
                     <input type="email"
                            class="form-control"
+                           debounce="700"
                            formControlName="email">
                     <span class="form-text text-danger"
                            *ngIf="campoNoValido('email')">

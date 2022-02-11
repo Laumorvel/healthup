@@ -45,12 +45,12 @@ export class SignUpComponent implements OnInit {
           Validators.required,
           Validators.pattern(this.validatorService.emailPattern),
         ],
-        [this.emailValidator],//servicio email
+        [this.emailValidator],
       ],
-      username: [, [Validators.required, Validators.min(0),//funcionaría con la api? Comprueba letra a letra, con lo que da error si coincide una letra
+      username: [, [Validators.required, Validators.min(0),
       ],
       [this.usernameValidator]
-    ],//incluir request para comprobar que no haya otro igual. Servicio nuevo
+    ],
       password: [, [Validators.required, Validators.min(6)]],
       password2: [, [Validators.required]],
     },

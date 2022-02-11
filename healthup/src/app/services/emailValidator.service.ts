@@ -4,10 +4,9 @@ import {
   AsyncValidator,
   ValidationErrors,
 } from '@angular/forms';
-import { catchError, debounce, debounceTime, delay, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { AuthServiceService } from './auth-service.service';
 import { User } from '../interfaces/interfaces';
 
 @Injectable({
@@ -22,17 +21,13 @@ export class emailValidatorService implements AsyncValidator{
    const email = control.value;
    return this.compruebaEmail(email).pipe(
      map (resp => {
-       console.log(resp);
        if(resp.email != null){
-        console.log(resp);
           return {emailIndicado: true};
        }else{
         return null;
        }
      }),
      catchError (err => {
-       console.log('ERRO EMAIL');
-        console.log(err);
         return of(null);
      })
    );

@@ -11,8 +11,12 @@
   min-height: 20vh;
 }
 
+header{
+  background-image: url("../assets/img/pistaSinLogo.png");
+}
+
 .fondoAzulClaro{
-  background-color: aliceblue;
+  background-color: #FEF9C7;
 }
 
 .fondoGris{
@@ -33,7 +37,25 @@
   width: 30%;
 }
 
-.logo{
-  width: 9%;
+/*Móvil*/
+@media screen and (max-width: 480px) {
+  .logo {
+    width: 35%;
+  }
 }
+
+/* Tablet  */
+@media screen and (min-width: 481px) and (max-width: 846px) {
+  .logo {
+    width: 30%;
+  }
+}
+/* PC*/
+@media screen and (min-width: 847px) and (max-width: 2100px) {
+  .logo {
+    width: 13%;
+  }
+}
+
+
 

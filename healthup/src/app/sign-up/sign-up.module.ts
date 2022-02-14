@@ -4,25 +4,23 @@ import { CommonModule } from '@angular/common';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SignUpComponent } from './sign-up.component';
 import { QuizComponent } from './quiz/quiz.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SignUpSuccessComponent } from './sign-up-success/sign-up-success.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     SignUpComponent,
-    QuizComponent,
-    SignUpSuccessComponent
+    QuizComponent
   ],
   imports: [
     CommonModule,
     SignUpRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports:[
     QuizComponent,
-    SignUpComponent,
-    SignUpSuccessComponent
+    SignUpComponent
   ]
 })
 export class SignUpModule { }

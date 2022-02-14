@@ -1,9 +1,27 @@
 /*FUENTE*/
 @import url("https://fonts.googleapis.com/css2?family=Cinzel&family=Federo&family=Quicksand:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Dancing+Script&family=Yellowtail&display=swap");
 
 * {
   font-family: "Quicksand", sans-serif;
   font-size: 20px;
+}
+
+.titulo {
+  font-family: "Alfa Slab One", cursive;
+}
+
+span.titulo {
+  color: #026670;
+}
+
+.titulo2 {
+  color: #919191;
+}
+
+.grey-bg {
+  background-color: #f5f7fa;
 }
 
 .h100 {
@@ -11,30 +29,84 @@
   min-height: 20vh;
 }
 
-.fondoAzulClaro{
+.fondoAzulClaro {
   background-color: aliceblue;
 }
 
-.fondoGris{
+.fondoGris {
   background-color: rgb(226, 223, 223);
 }
 
-.icon{
+.icon {
   max-width: 40px;
   height: auto;
 }
 
-.hoverZoom:hover{
+.hoverZoom:hover {
   transform: scale(1.1);
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.img{
+.img {
   width: 30%;
 }
 
-.centrar{
-
+.centrar {
   text-align: center;
 }
 
+.carousel {
+  margin: 0;
+  display: block;
+}
+
+.card1 {
+  background-image: url("../../assets/img/ninia.jpg");
+  background-size: 100% 100%;
+  font-weight: bold;
+  opacity: 0.4;
+}
+
+.card2 {
+  background-image: url("../../assets/img/niniaPatines.jpg");
+  background-size: 100% 100%;
+  font-weight: bold;
+  opacity: 0.4;
+}
+
+.card3 {
+  background-image: url("../../assets/img/pesas.jpg");
+  background-size: 100% 100%;
+  font-weight: bold;
+  opacity: 0.4;
+}
+
+.card:hover {
+  opacity: 100;
+
+  transform: scale(1.1);
+}
+
+.card {
+  border: none;
+  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
+  border-radius: 20px;
+  min-height: 450px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.card-has-bg {
+  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.bottom-aligned {
+  position: absolute;
+  bottom: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-family: "Alfa Slab One", cursive;
+}

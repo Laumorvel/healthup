@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-quiz',
@@ -8,12 +8,22 @@ import { Component, OnInit,Input } from '@angular/core';
 export class QuizComponent implements OnInit {
 
 
-  nombre:string = "false";
+  @Input()nombre:string ="";
+  @Output()sendObjetivos = new EventEmitter<number[]>();
+  objetivos:number[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  rangeFood:number = 1;
+  rangeSport:number = 1;
+
+  enviaObjetivos(){
+    this.objetivos.push(this.rangeFood, this.rangeSport);
+    console.log(this.objetivos);
+    this.sendObjetivos.emit(this.objetivos);
+  }
 
 }

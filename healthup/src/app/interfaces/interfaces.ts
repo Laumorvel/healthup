@@ -16,5 +16,7 @@ export interface User{
   username: string,
   email: string,
   password: string,
-  surname: string
+  surname: string,
+  objetivoFoodSemanal: number,
+  objetivoSportSemanal: number
 }

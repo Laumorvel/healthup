@@ -6,6 +6,7 @@ import { UsernameValidatorService } from '../services/username-validator.service
 import { User } from '../interfaces/interfaces';
 import { AuthServiceService } from '../services/auth-service.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,7 +22,6 @@ export class SignUpComponent implements OnInit {
     private authService: AuthServiceService,
     private router: Router
   ) {}
-
 
   miFormulario: FormGroup = this.fb.group(
     {
@@ -112,11 +112,12 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.miFormulario.reset({
-      name: '',
-      surname: '',
-      email: '',
-      username: '',
-      password: '',
+      name: 'caca',
+      surname: 'caca',
+      email: 'caca@caca.ca',
+      username: 'caca',
+      password: 'cacacaca',
+      password2: 'cacacaca'
     });
   }
 
@@ -127,11 +128,23 @@ export class SignUpComponent implements OnInit {
     );
   }
 
-  submitFormulario() {
-    console.log(this.miFormulario.value);
-    let user:User = this.miFormulario.value;
 
-    this.authService.register(user).subscribe();
+  submitFormulario(objetivos :number[]) {
+    console.log(this.miFormulario.value);
+    console.log(objetivos);
+    let user:User = this.miFormulario.value;
+    user.objetivoFoodSemanal = objetivos[0];
+    user.objetivoSportSemanal = objetivos[1];
+
+    this.authService.register(user).subscribe({
+      next: resp => {
+        localStorage.setItem('jwt', JSON.stringify(resp.access_token));
+        this.getIdUser();
+      },
+      error: err => {
+        Swal.fire('Error', err.error.message, 'error');
+      }
+    });
 
     this.miFormulario.reset({
       name: '',
@@ -141,9 +154,13 @@ export class SignUpComponent implements OnInit {
       password: '',
     });
 
-    this.router.navigateByUrl('/signUp/quiz');
+  }
 
-    //this.miFormulario.markAllAsTouched();
-
+  getIdUser() {
+    this.authService.loginGetIdUser().subscribe((resp) => {
+      console.log(resp);
+      localStorage.setItem('userId', JSON.stringify(resp));
+      this.router.navigateByUrl(`/userDashboard/${resp}`);
+    });
   }
 }

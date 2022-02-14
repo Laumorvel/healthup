@@ -116,71 +116,6 @@ span.titulo {
   font-family: "Alfa Slab One", cursive;
 }
 
-/*PC*/
-@media screen and (min-width: 1450px) {
-  .tituloOficial {
-    font-family: "Satisfy", cursive;
-    font-weight: bold;
-    font-size: 110px;
-    position: absolute;
-    top: 23%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .subtitulo {
-    font-size: 40px;
-    position: absolute;
-    top: 50%;
-    left: 80%;
-    transform: translate(-50%, -50%);
-  }
-  .imagenPrincipal {
-    width: 100%;
-  }
-}
-/* Tablet  */
-@media screen and (min-width: 780px) and (max-width: 1449px) {
-  .tituloOficial {
-    font-family: "Satisfy", cursive;
-    font-weight: bold;
-    font-size: 60px;
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .subtitulo {
-    font-size: 20px;
-    position: absolute;
-    font-weight: bold;
-    top: 75%;
-    left: 80%;
-    transform: translate(-50%, -50%);
-  }
-  .imagenPrincipal {
-    width: 100%;
-  }
-}
-
-/*Móvil*/
-@media screen and (max-width: 779px) {
-  .tituloOficial {
-    font-family: "Satisfy", cursive;
-    font-weight: bold;
-    font-size: 60px;
-    position: relative;
-    margin-top: 1em;
-  }
-  .subtitulo {
-    font-size: 25px;
-    position: relative;
-
-  }
-  .imagenPrincipal {
-    width: 100%;
-    display: none;
-  }
-}
 
 .contenedor {
   position: relative;
@@ -192,13 +127,119 @@ span.titulo {
   height: 100%;
 }
 
-.imgFondo{
-  background-image: url("../../assets/img/girlSmiling.jpg");
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  height: 100%;
+
+/*PC*/
+@media screen and (min-width: 1450px) {
+  .tituloOficial {
+    font-family: "Satisfy", cursive;
+    font-weight: bold;
+    font-size: 110px;
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+  }
+  .subtitulo {
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+  }
+  .imgFondo{
+    background-image: url("../../assets/img/girlSmiling.jpg");
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    height: 100%;
+  }
+  .row.centro{
+
+    --bs-gutter-x: 0!important;
+    }
+
+    .row.card-deck{
+      --bs-gutter-x: 0!important;
+    }
+}
+/* Tablet  */
+@media screen and (min-width: 780px) and (max-width: 1449px) {
+  .tituloOficial {
+    font-family: "Satisfy", cursive;
+    font-weight: bold;
+    font-size: 60px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .subtitulo {
+    font-size: 20px;
+    position: absolute;
+    font-weight: bold;
+    top: 75%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+  }
+  .imgFondo{
+    background-image: url("../../assets/img/girlSmiling.jpg");
+    background-attachment: fixed;
+    background-size: 50% 10%;
+    height: 30%;
+  }
+
+ img{
+  width: 90%!important;
+}
+.row.centro{
+
+  --bs-gutter-x: 0!important;
+  }
+}
+
+/*Móvil*/
+@media screen and (max-width: 779px) {
+  .tituloOficial {
+    font-family: "Satisfy", cursive;
+    font-weight: bold;
+    font-size: 50px;
+    margin-top: 1em;
+    text-shadow: 8px 8px 2px #FEF9C7;
+  }
+  .subtitulo {
+    font-size: 25px;
+    font-weight: bold;
+
+  }
+  .imagenPrincipal {
+    width: 100%;
+    display: none;
+  }
+  .imgFondo{
+    background-image: none;
+  }
+ img{
+    width: 90%!important;
+  }
+
+  .contenedor{
+    background-image: none;
+  }
+  .row.centro{
+
+    --bs-gutter-x: 0!important;
+    }
+    .row.card-deck{
+      --bs-gutter-x: 0!important;
+    }
 }
 
 .mb-5{
   padding:0!important;
+}
+
+.about{
+  font-family: "Satisfy", cursive;
+    font-weight: bold;
+    font-size: 45px;
 }

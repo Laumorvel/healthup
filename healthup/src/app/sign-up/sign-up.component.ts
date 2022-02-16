@@ -135,6 +135,7 @@ export class SignUpComponent implements OnInit {
     let user:User = this.miFormulario.value;
     user.objetivoFoodSemanal = objetivos[0];
     user.objetivoSportSemanal = objetivos[1];
+    localStorage.setItem('user', JSON.stringify(user));
 
     this.authService.register(user).subscribe({
       next: resp => {

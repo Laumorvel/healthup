@@ -20,3 +20,11 @@ export interface User{
   objetivoFoodSemanal: number,
   objetivoSportSemanal: number
 }
+
+export interface Logro{
+  id: number,
+  fecha: Date,
+  tipo: string,
+  user: User,
+  logradoDia: boolean;
+}

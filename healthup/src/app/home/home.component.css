@@ -116,17 +116,16 @@ span.titulo {
   font-family: "Alfa Slab One", cursive;
 }
 
-
 .contenedor {
   position: relative;
   display: inline-block;
   text-align: center;
-  background-image: url("../../assets/img/girlSmiling.jpg");
   background-attachment: fixed;
-  background-size: 100% 100%;
+  background-size: 90% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
   height: 100%;
 }
-
 
 /*PC*/
 @media screen and (min-width: 1450px) {
@@ -139,28 +138,30 @@ span.titulo {
     left: 50%;
     transform: translate(-50%, -50%);
     color: #ffffff;
+    text-shadow: 4px 4px 2px #fef9c7;
   }
   .subtitulo {
     font-size: 40px;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 80%;
     transform: translate(-50%, -50%);
   }
-  .imgFondo{
-    background-image: url("../../assets/img/girlSmiling.jpg");
+  .imgFondo {
+    background-image: url("../../assets/img/smilingGirlFixed.jpg");
     background-attachment: fixed;
     background-size: 100% 100%;
     height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
   }
-  .row.centro{
+  .row.centro {
+    --bs-gutter-x: 0 !important;
+  }
 
-    --bs-gutter-x: 0!important;
-    }
-
-    .row.card-deck{
-      --bs-gutter-x: 0!important;
-    }
+  .row.card-deck {
+    --bs-gutter-x: 0 !important;
+  }
 }
 /* Tablet  */
 @media screen and (min-width: 780px) and (max-width: 1449px) {
@@ -172,6 +173,7 @@ span.titulo {
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-shadow: 8px 8px 2px #fef9c7;
   }
   .subtitulo {
     font-size: 20px;
@@ -181,19 +183,21 @@ span.titulo {
     left: 80%;
     transform: translate(-50%, -50%);
   }
-  .imgFondo{
-    background-image: url("../../assets/img/girlSmiling.jpg");
+  .imgFondo {
+    background-image: url("../../assets/img/smilingGirlFixed.jpg");
     background-attachment: fixed;
-    background-size: 50% 10%;
+    background-size: 100% 100%;
     height: 30%;
+
+    background-repeat: no-repeat;
+    background-position: center center;
   }
 
- img{
-  width: 90%!important;
-}
-.row.centro{
-
-  --bs-gutter-x: 0!important;
+  img {
+    width: 90% !important;
+  }
+  .row.centro {
+    --bs-gutter-x: 0 !important;
   }
 }
 
@@ -204,42 +208,41 @@ span.titulo {
     font-weight: bold;
     font-size: 50px;
     margin-top: 1em;
-    text-shadow: 8px 8px 2px #FEF9C7;
+    text-shadow: 8px 8px 2px #fef9c7;
   }
   .subtitulo {
     font-size: 25px;
     font-weight: bold;
-
   }
   .imagenPrincipal {
     width: 100%;
     display: none;
   }
-  .imgFondo{
+  .imgFondo {
     background-image: none;
   }
- img{
-    width: 90%!important;
+  img {
+    width: 90% !important;
   }
 
-  .contenedor{
+  .contenedor {
     background-image: none;
   }
-  .row.centro{
-
-    --bs-gutter-x: 0!important;
-    }
-    .row.card-deck{
-      --bs-gutter-x: 0!important;
-    }
+  .row.centro {
+    --bs-gutter-x: 0 !important;
+  }
+  .row.card-deck {
+    --bs-gutter-x: 0 !important;
+  }
 }
 
-.mb-5{
-  padding:0!important;
+.mb-5 {
+  padding: 0 !important;
 }
 
-.about{
+.about {
   font-family: "Satisfy", cursive;
-    font-weight: bold;
-    font-size: 45px;
+  font-weight: bold;
+  font-size: 45px;
 }
+

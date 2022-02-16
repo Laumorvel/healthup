@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ContactUsModule } from '../contact-us/contact-us.module';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -9,12 +7,13 @@ import { ContactUsModule } from '../contact-us/contact-us.module';
 })
 export class UserDashboardComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
-
-    console.log(this.router.url);
   }
+
+  idUser = Number(localStorage.getItem('userId'));
+
 
 
 }

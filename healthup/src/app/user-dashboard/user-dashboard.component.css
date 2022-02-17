@@ -19,8 +19,22 @@
 
 .boton{
   width: fit-content;
+  border: solid 1px;
+  margin-bottom: 2em;
 }
 
 .yes{
   margin-right: 2em;
+  background-color: rgb(161, 207, 161);
 }
+
+.no{
+  background-color: rgb(214, 181, 181);
+}
+
+
+.cartaFood{
+  margin-right: 10px;
+}
+
+

@@ -1,10 +1,11 @@
 <div class="row mb-5">
   <p class="title text-center mt-5">Did you accomplish your goals today?</p>
 
+  <div class="col-md-4"></div>
   <!--SPORT-->
-  <div class="col-md-6 card mt-5 border-0">
-    <div class="card-content text-center mt-5 border-0 justify-content-center">
-      <img src="../../assets/img/muscle.png" class="icon" />
+  <div class="col-md-2 card mt-5 mb-5 border-1 cartaFood">
+    <div class="card-content text-center mt-5 justify-content-center">
+      <img src="../../assets/img/dumbbell.png" class="icon" />
 
       <!--caja-->
       <div class=" card mt-5 border-0 w-100 d-inline-block">
@@ -13,7 +14,7 @@
           <img src="../../assets/img/cheque.png" name="yes" class="iconito " />
         </button>
         <!--NO-->
-        <button class="btn boton">
+        <button class="btn boton no">
           <img
             src="../../assets/img/incorrect.png"
             name="no"
@@ -26,10 +27,12 @@
     </div>
   </div>
 
+
+
   <!--FOOD-->
-  <div class="col-md-6 card mt-5 border-0">
-    <div class="card-content text-center mt-5 border-0">
-      <img src="../../assets/img/diet.png" class="icon" />
+  <div class="col-md-2 card mt-5 mb-5 border-1 cartaSport">
+    <div class="card-content text-center mt-5">
+      <img src="../../assets/img/nutrition.png" class="icon" />
 
       <!--caja-->
       <div class="card mt-5 w-100 border-0 d-inline-block">
@@ -38,7 +41,7 @@
           <img src="../../assets/img/cheque.png" name="yes" class="iconito" />
         </button>
         <!--NO-->
-        <button class="boton btn">
+        <button class="boton btn no">
           <img
             src="../../assets/img/incorrect.png"
             name="no"
@@ -50,10 +53,12 @@
 
     </div>
   </div>
+  <div class="col-md-4"></div>
 </div>
 
-<div class="row justify-content-center mt-5">
-  <div class="col-md-6">
+<!--DATATABLE-->
+<div class="row justify-content-center table">
+  <div class="col-md-9">
     <table
       datatable
       [dtOptions]="dtOptions"

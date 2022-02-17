@@ -22,12 +22,10 @@ export class LogInComponent implements OnInit {
   login() {
     this.authService.login(this.username, this.password).subscribe({
       next: (resp) => {
-        console.log(resp);
         localStorage.setItem('jwt', JSON.stringify(resp.access_token));
         this.getIdUser();//envío también el id del usuario logueado
       },
       error: (err) => {
-        console.log(err.message);
         Swal.fire('Error', err.error.message, 'error');
       },
     });
@@ -35,7 +33,6 @@ export class LogInComponent implements OnInit {
 
   getIdUser() {
     this.authService.loginGetIdUser().subscribe((resp) => {
-      console.log(resp);
       localStorage.setItem('userId', JSON.stringify(resp));
       this.router.navigateByUrl(`/userDashboard/${resp}`);
     });

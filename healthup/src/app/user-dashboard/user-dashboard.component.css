@@ -16,3 +16,11 @@
   max-width: 30px;
   height: auto;
 }
+
+.boton{
+  width: fit-content;
+}
+
+.yes{
+  margin-right: 2em;
+}

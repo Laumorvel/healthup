@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { User, AuthResponse, Logro } from '../interfaces/interfaces';
+import { Logro } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class UserService {
 
 
 
-  getRegistro(user: User){
-    const url = `${this.baseUrl}/user/${user.id}/registro`;
+  getRegistro(idUser: number){
+    const url = `${this.baseUrl}/user/${idUser}/registro`;
     let token = JSON.parse(<string>localStorage.getItem('jwt'));
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`);

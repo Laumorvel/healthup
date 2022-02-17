@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DataTablesModule } from "angular-datatables";
 import { UserDashboardRoutingModule } from './user-dashboard-routing.module';
 import { UserDashboardComponent } from './user-dashboard.component';
@@ -15,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     UserDashboardRoutingModule,
     SharedModule,
     DataTablesModule
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class UserDashboardModule { }

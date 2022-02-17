@@ -18,11 +18,9 @@ export class AuthGuardGuard implements CanActivate {
 
       return this.authService.validarToken().pipe(//devuelve la respuesta del método
         map(resp => {
-          console.log(`RESPUESTA DEL GUARDIÁN: ${resp}`);
           return true;
         }),
         catchError(err => {
-          console.log(err);
           Swal.fire(//devuelve el mensaje resultante del método de verificar token de la fake api
             'Error', err.error.message,'error'
           );

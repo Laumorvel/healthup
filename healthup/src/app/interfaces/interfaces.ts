@@ -22,9 +22,9 @@ export interface User{
 }
 
 export interface Logro{
-  id: number,
-  fecha: Date,
+  id?: number,
+  fecha: string|null,
   tipo: string,
-  user: User,
+  user?: User,
   logradoDia: boolean;
 }

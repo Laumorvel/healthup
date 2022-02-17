@@ -19,14 +19,12 @@ export class AppComponent {
     this.subscriber = this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
-        console.log(event);
         this.checkRuta();
       });
   }
 
   checkRuta() {
     //Si la ruta contiene userDashboard indica que está logueado
-    console.log(this.router.url);
     if (this.router.url.includes('userDashboard')) {
       this.registrado = true;
     }else{

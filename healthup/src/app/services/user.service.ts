@@ -10,14 +10,29 @@ export class UserService {
   private baseUrl: string = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
-
+  token = JSON.parse(<string>localStorage.getItem('jwt'));
 
   getRegistro(idUser: number){
     const url = `${this.baseUrl}/user/${idUser}/registro`;
-    let token = JSON.parse(<string>localStorage.getItem('jwt'));
     const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
+      .set('Authorization', `Bearer ${this.token}`);
     return this.http.get<Logro[]>( url, { headers } );
+  }
+
+  newRegistro(idUser:number, logro: Logro){
+    const url = `${this.baseUrl}/user/${idUser}/newLogro`;
+    const body = logro;
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.token}`);
+    return this.http.post<Logro>(url, body, {headers});
+  }
+
+  modificaRegistro(idUser:number, logro:Logro){
+    const url = `${this.baseUrl}/user/${idUser}/modificaLogro/${logro.id}`;
+    const body = logro;
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.token}`);
+    return this.http.put<Logro>(url, body, {headers});
   }
 
 }

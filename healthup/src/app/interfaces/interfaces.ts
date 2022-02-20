@@ -3,7 +3,8 @@ export interface AuthResponse{
   access_token?: string;
   status?:number,
   message?: string,
-  userId?: number //lo incluido para poder obtener el id del usuario desde el principio y añadirlo a la ruta
+  userId?: number, //lo incluido para poder obtener el id del usuario desde el principio y añadirlo a la ruta
+  user?: User;
 }
 
 export interface ErrorResponse{
@@ -18,7 +19,9 @@ export interface User{
   password: string,
   surname: string,
   objetivoFoodSemanal: number,
-  objetivoSportSemanal: number
+  objetivoSportSemanal: number,
+  avanceSemanaFood: number,
+  avanceSemanaSport: number;
 }
 
 export interface Logro{
@@ -26,5 +29,6 @@ export interface Logro{
   fecha: string|null,
   tipo: string,
   user?: User,
-  logradoDia: boolean;
+  logradoDia?: boolean,
+  noRegistrado?:boolean;
 }

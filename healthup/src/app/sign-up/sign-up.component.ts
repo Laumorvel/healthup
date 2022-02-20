@@ -135,12 +135,11 @@ export class SignUpComponent implements OnInit {
     let user:User = this.miFormulario.value;
     user.objetivoFoodSemanal = objetivos[0];
     user.objetivoSportSemanal = objetivos[1];
-    localStorage.setItem('user', JSON.stringify(user));
 
     this.authService.register(user).subscribe({
       next: resp => {
         localStorage.setItem('jwt', JSON.stringify(resp.access_token));
-        this.getIdUser();
+        this.getUser();
       },
       error: err => {
         Swal.fire('Error', err.error.message, 'error');
@@ -157,11 +156,12 @@ export class SignUpComponent implements OnInit {
 
   }
 
-  getIdUser() {
-    this.authService.loginGetIdUser().subscribe((resp) => {
+  getUser() {
+    this.authService.loginGetUser().subscribe(
+      (resp) => {
       console.log(resp);
-      localStorage.setItem('userId', JSON.stringify(resp));
-      this.router.navigateByUrl(`/userDashboard/${resp}`);
+      localStorage.setItem('user', JSON.stringify(resp));
+      this.router.navigateByUrl(`/userDashboard/${resp.id}`);
     });
   }
 }

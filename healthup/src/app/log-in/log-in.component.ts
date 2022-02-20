@@ -23,7 +23,7 @@ export class LogInComponent implements OnInit {
     this.authService.login(this.username, this.password).subscribe({
       next: (resp) => {
         localStorage.setItem('jwt', JSON.stringify(resp.access_token));
-        this.getIdUser();//envío también el id del usuario logueado
+        this.getUser();//envío también el id del usuario logueado
       },
       error: (err) => {
         Swal.fire('Error', err.error.message, 'error');
@@ -31,10 +31,11 @@ export class LogInComponent implements OnInit {
     });
   }
 
-  getIdUser() {
-    this.authService.loginGetIdUser().subscribe((resp) => {
-      localStorage.setItem('userId', JSON.stringify(resp));
-      this.router.navigateByUrl(`/userDashboard/${resp}`);
+  getUser() {
+    this.authService.loginGetUser().subscribe(
+      (resp) => {
+      localStorage.setItem('user', JSON.stringify(resp));
+      this.router.navigateByUrl(`/userDashboard/${resp.id}`);
     });
   }
 }

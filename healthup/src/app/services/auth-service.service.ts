@@ -28,18 +28,17 @@ export class AuthServiceService {
     let token = JSON.parse(<string>localStorage.getItem('jwt'));
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`);
-
     return this.http.get<AuthResponse>( url, { headers } )
 
   }
 
   //Método para poder tener el id de vuelta del usuario
-  loginGetIdUser(){
+  loginGetUser(){
     const url = `${this.baseUrl}/user`;
     let token = JSON.parse(<string>localStorage.getItem('jwt'));
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`);
-    return this.http.get<AuthResponse>(url, {headers});
+    return this.http.get<User>(url, {headers});
   }
 
 
@@ -61,5 +60,5 @@ export class AuthServiceService {
     return this.http.post<AuthResponse>(url, body, {headers:opcionHeader});
   }
 
-  ///users/email --> hacer la petición
+
 }

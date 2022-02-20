@@ -5,7 +5,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { catchError, map, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../interfaces/interfaces';
 
@@ -35,7 +35,7 @@ export class UsernameValidatorService implements AsyncValidator {
 
   //Método para comprobar username en BBDD
   compruebaUsername(username: string) {
-    const url = `${this.baseUrl}/usernames/${username}`;
+    const url = `${this.baseUrl}/auth/user?username=${username}`;
     return this.http.get<User>(url);
   }
 }

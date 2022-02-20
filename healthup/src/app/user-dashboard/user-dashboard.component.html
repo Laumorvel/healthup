@@ -5,6 +5,11 @@
   <!--SPORT-->
   <div class="col-md-2 card mt-5 mb-5 border-1 cartaFood">
     <div class="card-content text-center mt-5 justify-content-center">
+      <!--Objetivo y avance-->
+      <div class="mb-3 avance title">
+        {{avanceSport}} / {{objetivoSport}}
+      </div>
+      <!--imagen pesas-->
       <img src="../../assets/img/dumbbell.png" class="icon" />
 
       <!--caja-->
@@ -32,8 +37,12 @@
   <!--FOOD-->
   <div class="col-md-2 card mt-5 mb-5 border-1 cartaSport">
     <div class="card-content text-center mt-5">
+      <!--Avance y objetivo-->
+      <div class="mb-3 avance title">
+        {{avanceFood}} / {{objetivoFood}}
+      </div>
+      <!--imagen comida-->
       <img src="../../assets/img/nutrition.png" class="icon" />
-
       <!--caja-->
       <div class="card mt-5 w-100 border-0 d-inline-block">
         <!--YES-->
@@ -77,13 +86,12 @@
           <td>{{ logro.fecha }}</td>
           <td ><!--TIPO-->
             <ng-container *ngIf="logro.tipo==='food'";else second><img src="../../assets/img/nutrition.png" class="iconito"> </ng-container>
-            <ng-container #second *ngIf="logro.tipo==='sport'";else third><img src="../../assets/img/dumbbell.png" class="iconito"></ng-container>
-            <ng-container #third *ngIf="logro.tipo==='noRegistrado'"><img src="../../assets/img/signo-de-interrogacion.png" class="iconito"></ng-container>
+            <ng-container #second *ngIf="logro.tipo==='sport'"><img src="../../assets/img/dumbbell.png" class="iconito"></ng-container>
           </td>
           <td><!--LOGRADO-->
-            <ng-container *ngIf="logro.tipo==='noRegistrado'";else second><img src="../../assets/img/signo-de-interrogacion.png" class="iconito"></ng-container>
-            <ng-container #second *ngIf="logro.logradoDia && logro.tipo != 'noRegistrado'";else third><img src="../../assets/img/garrapata.png" class="iconito"></ng-container>
-            <ng-container #third *ngIf="!logro.logradoDia && logro.tipo != 'noRegistrado'"><img src="../../assets/img/cancel.png" class="iconito"></ng-container>
+            <ng-container *ngIf="logro.noRegistrado != null";else second><img src="../../assets/img/signo-de-interrogacion.png" class="iconito"></ng-container>
+            <ng-container #second *ngIf="logro.logradoDia && logro.noRegistrado == null";else third><img src="../../assets/img/garrapata.png" class="iconito"></ng-container>
+            <ng-container #third *ngIf="!logro.logradoDia && logro.noRegistrado == null "><img src="../../assets/img/cancel.png" class="iconito"></ng-container>
 
           </td>
         </tr>

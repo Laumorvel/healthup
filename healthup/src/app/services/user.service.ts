@@ -19,6 +19,19 @@ export class UserService {
     return this.http.get<Logro[]>( url, { headers } );
   }
 
+  /**
+   * Devuelve una lista de logros según el tipo del logro.
+   * @param idUser
+   * @param tipo
+   * @returns lista de logros
+   */
+  getRegistroPorTipo(idUser: number, tipo: string){
+    const url = `${this.baseUrl}/user/${idUser}/registro?tipo=${tipo}`;
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.token}`);
+    return this.http.get<Logro[]>( url, { headers } );
+  }
+
   newRegistro(idUser:number, logro: Logro){
     const url = `${this.baseUrl}/user/${idUser}/newLogro`;
     const body = logro;

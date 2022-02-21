@@ -102,6 +102,19 @@ export class UserDashboardComponent implements OnInit {
     });
   }
 
+  /**
+   * Carga la tabla según el tipo que se seleccione.
+   * @param tipo
+   */
+  cargaRegistroPorTipo(tipo: string){
+    this.userService.getRegistroPorTipo(this.user.id, tipo).subscribe(
+      resp => {
+        this.registro = resp;
+        this.dtTrigger.next(null);
+      }
+    )
+  }
+
   getUser(){
     this.authService.loginGetUser().subscribe(
       (resp) => {

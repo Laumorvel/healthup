@@ -32,7 +32,10 @@ export class UserDashboardComponent implements OnInit {
   registro: Logro[] = [];
   registroFood: Logro[] = [];
   registroSport: Logro[] = [];
-  dtOptions: DataTables.Settings = {};
+  dtOptions: DataTables.Settings = {
+    pagingType: 'full_numbers',
+    pageLength: 5,
+  };
   dtTrigger: Subject<any> = new Subject();
   enviadoFood: boolean = false;
   enviadoSport: boolean = false;
@@ -44,7 +47,7 @@ export class UserDashboardComponent implements OnInit {
 
   //MÉTODOS:
 
-  pulsado(tipo: string, logrado: boolean) {
+ pulsado(tipo: string, logrado: boolean) {
     let index = this.registro.findIndex(
       (logro) => logro.fecha === this.fechaHoy && logro.tipo === tipo
     ); //Compruebo que la fecha del logro tipo food no se encuentra en la lista = aún no se ha pulsado hoy
@@ -99,7 +102,6 @@ export class UserDashboardComponent implements OnInit {
       tipo: tipo,
       logradoDia: logrado,
     };
-    console.log(logro);
     return logro;
   }
 
@@ -113,12 +115,12 @@ export class UserDashboardComponent implements OnInit {
   }
 
   /**
-   * Carga la tabla según el tipo que se seleccione.
+   * Carga la tabla según el tipo que se seleccione,
+   * partiendo del registro total del usuario (no hace falta hacer nueva petición).
    * @param tipo
    */
   cargaRegistroPorTipo(tipo: string) {
     let lista = this.registro.filter((logro) => logro.tipo == tipo);
-    console.log(lista);
 
     if (tipo == 'food') {
       this.registroFood = lista;
@@ -132,6 +134,7 @@ export class UserDashboardComponent implements OnInit {
       this.user = resp;
       this.avanceFood = resp.avanceSemanaFood;
       this.avanceSport = resp.avanceSemanaSport;
+      localStorage.setItem('user', JSON.stringify(resp));
     });
   }
 

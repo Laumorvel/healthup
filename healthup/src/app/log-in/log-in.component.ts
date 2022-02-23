@@ -9,15 +9,37 @@ import { AuthServiceService } from '../services/auth-service.service';
   styleUrls: ['./log-in.component.css'],
 })
 export class LogInComponent implements OnInit {
-  constructor(
-    private authService: AuthServiceService,
-    private router: Router
-  ) {}
 
   username: string = '';
   password: string = '';
+  marcadoRemember: boolean = false;
+
+  //CONSTRUCTOR
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router
+  ) {
+    this.marcadoRemember = JSON.parse(<string>localStorage.getItem('marcadoRemember')) == 'true' ? true : false;
+    if(this.marcadoRemember){
+      this.username = JSON.parse(<string>localStorage.getItem('username'));
+    }
+  }
+
+  //JSON.parse(<string>localStorage.getItem('marcadoRemember'));
 
   ngOnInit(): void {}
+
+  guardarUser(){
+    if(!this.marcadoRemember){
+      localStorage.setItem('username', JSON.stringify(this.username));
+      localStorage.setItem('marcadoRemember', JSON.stringify('true'));
+      this.marcadoRemember = true;
+    }else{
+      localStorage.removeItem('username');
+      localStorage.setItem('marcadoRemember', JSON.stringify('false'));
+      this.marcadoRemember = false;
+    }
+  }
 
   login() {
     this.authService.login(this.username, this.password).subscribe({

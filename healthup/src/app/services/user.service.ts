@@ -25,12 +25,12 @@ export class UserService {
    * @param tipo
    * @returns lista de logros
    */
-  getRegistroPorTipo(idUser: number, tipo: string){
+  /*getRegistroPorTipo(idUser: number, tipo: string){
     const url = `${this.baseUrl}/user/${idUser}/registro?tipo=${tipo}`;
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${this.token}`);
     return this.http.get<Logro[]>( url, { headers } );
-  }
+  }*/
 
   newRegistro(idUser:number, logro: Logro){
     const url = `${this.baseUrl}/user/${idUser}/newLogro`;

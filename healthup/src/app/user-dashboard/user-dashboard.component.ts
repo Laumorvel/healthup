@@ -11,6 +11,7 @@ import { AuthServiceService } from '../services/auth-service.service';
   styleUrls: ['./user-dashboard.component.css'],
 })
 export class UserDashboardComponent implements OnInit {
+  ng: any;
   constructor(
     private userService: UserService,
     public datepipe: DatePipe,
@@ -22,7 +23,7 @@ export class UserDashboardComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 5,
     };
-
+    this.cargaUser();
     this.cargaRegistro();
   }
 
@@ -43,7 +44,9 @@ export class UserDashboardComponent implements OnInit {
   objetivoFood: number = this.user.objetivoFoodSemanal;
   objetivoSport: number = this.user.objetivoSportSemanal;
   avanceFood: number = this.user.avanceSemanaFood;
-  avanceSport: Number = this.user.avanceSemanaSport;
+  avanceSport: number = this.user.avanceSemanaSport;
+  porcentajeSport: string = '0';
+  porcentajeFood: string = '0';
 
   //MÉTODOS:
 
@@ -65,10 +68,9 @@ export class UserDashboardComponent implements OnInit {
       if (index == -1) {
         this.userService
           .newRegistro(this.idUser, this.creaLogro(tipo, logrado))
-          .subscribe((resp) => {
+          .subscribe(async (resp) => {
             this.registro.push(resp);
-            this.getUser(); //actualizo avance
-            this.cargaRegistroPorTipo(tipo);//para actualizar la lista
+            this.getUser(tipo); //actualizo avance
             this.dtTrigger.next(resp);
           //  this.ngOnDestroy();
           });
@@ -84,12 +86,11 @@ export class UserDashboardComponent implements OnInit {
           logro.logradoDia = logrado;
           this.userService
             .modificaRegistro(this.idUser, logro)
-            .subscribe((resp) => {
+            .subscribe(async (resp) => {
               this.registro.splice(index, 1, resp); //elimino el objeto en esa posición y añado el logro modificado
-              this.getUser();
-              this.cargaRegistroPorTipo(tipo);
-              this.dtTrigger.next(resp);
-             // this.ngOnDestroy();
+              this.getUser(tipo);
+              //this.dtTrigger.next(resp);
+              // this.ngOnDestroy();
             });
         }
       }
@@ -110,9 +111,28 @@ export class UserDashboardComponent implements OnInit {
       this.registro = resp;
       this.cargaRegistroPorTipo('food');
       this.cargaRegistroPorTipo('sport');
-      this.dtTrigger.next(resp);
+      this.dtTrigger.next(null);
     });
   }
+
+  cargaPorcentaje(tipo:string){
+    if(tipo == 'sport'){
+      let sumaAvance = 100 / this.objetivoSport;
+      let avanceActual = sumaAvance * Number(this.avanceSport);
+      this.porcentajeSport = avanceActual.toString();
+      if(this.objetivoSport <= this.avanceSport){
+        this.porcentajeSport = '100';
+      }
+    }else{
+      let sumaAvance = 100 / this.objetivoFood;
+      let avanceActual = sumaAvance * Number(this.avanceFood);
+      this.porcentajeFood = avanceActual.toString();
+      if(this.objetivoFood <= this.avanceFood){
+        this.porcentajeFood = '100';
+      }
+    }
+  }
+
 
   /**
    * Carga la tabla según el tipo que se seleccione,
@@ -124,17 +144,30 @@ export class UserDashboardComponent implements OnInit {
 
     if (tipo == 'food') {
       this.registroFood = lista;
+
     } else {
       this.registroSport = lista;
     }
   }
 
-  getUser() {
-    this.authService.loginGetUser().subscribe((resp) => {
+  async getUser(tipo: string) {
+    await this.authService.loginGetUser().subscribe((resp) => {
       this.user = resp;
       this.avanceFood = resp.avanceSemanaFood;
       this.avanceSport = resp.avanceSemanaSport;
       localStorage.setItem('user', JSON.stringify(resp));
+      this.cargaPorcentaje(tipo);
+      this.cargaRegistroPorTipo(tipo);//para actualizar la lista
+    });
+  }
+
+  cargaUser(){
+    this.authService.loginGetUser().subscribe((resp) => {
+      this.user = resp;
+      this.avanceFood = resp.avanceSemanaFood;
+      this.avanceSport = resp.avanceSemanaSport;
+      this.cargaPorcentaje('food');
+      this.cargaPorcentaje('sport');
     });
   }
 
@@ -156,6 +189,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   ngOnDestroy(): void {
+    console.log('holi');
     this.dtTrigger.unsubscribe();
   }
 }

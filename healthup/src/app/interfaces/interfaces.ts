@@ -32,3 +32,13 @@ export interface Logro{
   logradoDia?: boolean,
   noRegistrado?:boolean;
 }
+
+export interface Mensaje{
+  id: number,
+  fecha: string,
+  email: string,
+  tlf?: string,
+  mssg: string,
+  companyName?:string
+  name: string,
+}

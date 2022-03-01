@@ -5,8 +5,8 @@
   font-family: "Quicksand", sans-serif;
   font-size: 20px;
 }
-.fondoAzulClaro{
-  background-color: #FCE181;
+.fondoAzulClaro {
+  background-color: #fce181;
 }
 
 .h100 {
@@ -14,33 +14,73 @@
   min-height: 20vh;
 }
 
-.fondoGris{
+.fondoGris {
   background-color: rgb(226, 223, 223);
 }
 
-.icon{
+.icon {
   max-width: 40px;
   height: auto;
 }
 
-.hoverZoom:hover{
+.hoverZoom:hover {
   transform: scale(1.1);
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.img{
+.img {
   width: 30%;
 }
 
-.logo{
-  width: 9%;
+.imgIconos{
+  width: 17%;
 }
 
-.navbar-toggler-icon{
+.navbar-toggler-icon {
   background-color: black;
   border-radius: 15px;
 }
 
+/*Móvil*/
+@media screen and (max-width: 575px) {
+  .settings {
+    position: relative;
+    list-style: none;
+    margin-top: 0.5em;
+  }
 
+  .settings a {
+    text-decoration: none;
+  }
+}
 
+.signup{
+  padding-bottom: 0.3em;
+}
 
+.casa{
+  width: 10%;
+  padding-bottom: 0.2em;
+}
+
+.login{
+  width: 22%;
+  padding-bottom: 0.3em;
+}
+
+/*TÁBLET EN ADELANTE*/
+@media screen and (min-width: 576px) {
+  .settings {
+    right: 0;
+    position: absolute;
+    list-style: none;
+  }
+
+  .settings a {
+    text-decoration: none;
+  }
+
+  .nav-item{
+    margin-left: 2rem;
+  }
+}

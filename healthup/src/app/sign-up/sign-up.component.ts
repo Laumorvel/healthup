@@ -130,8 +130,6 @@ export class SignUpComponent implements OnInit {
 
 
   submitFormulario(objetivos :number[]) {
-    console.log(this.miFormulario.value);
-    console.log(objetivos);
     let user:User = this.miFormulario.value;
     user.objetivoFoodSemanal = objetivos[0];
     user.objetivoSportSemanal = objetivos[1];

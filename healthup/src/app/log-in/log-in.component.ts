@@ -6,7 +6,7 @@ import { AuthServiceService } from '../services/auth-service.service';
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
-  styleUrls: ['./log-in.component.css'],
+  styleUrls: ['./log-in.component.scss'],
 })
 export class LogInComponent implements OnInit {
 
@@ -58,6 +58,7 @@ export class LogInComponent implements OnInit {
       (resp) => {
       localStorage.setItem('user', JSON.stringify(resp));
       this.router.navigateByUrl(`/userDashboard/${resp.id}`);
+      localStorage.setItem('userId', JSON.stringify(resp.id));
     });
   }
 }

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthResponse, User } from '../interfaces/interfaces';
+import { AuthResponse, User, Mensaje } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +58,14 @@ export class AuthServiceService {
       'email': email
     }
     return this.http.post<AuthResponse>(url, body, {headers:opcionHeader});
+  }
+
+  newMensaje(mensaje: Mensaje){
+    const url = `${this.baseUrl}/auth/newMessage`;
+    const opcionHeader = new HttpHeaders();
+    opcionHeader.append('Access-Control-Allow-Origin','*');
+    const body = mensaje;
+    return this.http.post<Mensaje>(url,body, {headers:opcionHeader});
   }
 
 

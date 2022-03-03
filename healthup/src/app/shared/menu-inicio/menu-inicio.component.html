@@ -1,3 +1,4 @@
+
 <!-- BARRA DE NAVEGACIÓN / PARA EL HOME -->
 <div class="row fondoAzulClaro">
   <nav class="navbar navbar-expand-sm navbar-dark py-2">
@@ -53,11 +54,31 @@
               >
             </li>
             <li class="nav-item hoverZoom">
-              <a class="nav-link text-black" routerLink="/" (click)="logout()"
+              <a class="nav-link text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 ><img src="../../assets/img/logout(1).png" class="icon imgIconos" /> Logout</a
               >
             </li>
           </ul>
+
+
+        <!--MODAL-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content text-center">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">LOGOUT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure?
+              </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="logout()">Yes</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
             <li class="nav-item settings hoverZoom">
               <a class="text-black" routerLink="/userDashboard/{{userId}}/userSettings">
@@ -66,6 +87,7 @@
             </li>
 
         </ng-template>
+
 
       </div>
     </div>

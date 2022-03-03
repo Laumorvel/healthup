@@ -6,7 +6,7 @@ import { User } from '../../interfaces/interfaces';
 @Component({
   selector: 'app-menu-inicio',
   templateUrl: './menu-inicio.component.html',
-  styleUrls: ['./menu-inicio.component.css'],
+  styleUrls: ['./menu-inicio.component.css']
 })
 export class MenuInicioComponent implements OnInit {
   constructor(private ruta: ActivatedRoute, private router: Router) {}
@@ -15,7 +15,7 @@ export class MenuInicioComponent implements OnInit {
 
   @Input()registrado: boolean = false;
   userId = localStorage.getItem('userId');
-  //user:User = JSON.parse(<string>localStorage.getItem('user'));
+  user:User = JSON.parse(<string>localStorage.getItem('user'));
   //idU:number = this.user.id;
 
   logout() {

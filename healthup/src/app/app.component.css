@@ -57,5 +57,7 @@ header{
   }
 }
 
-
+.content{
+  display:flex;
+}
 

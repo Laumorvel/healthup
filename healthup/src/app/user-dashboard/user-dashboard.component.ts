@@ -33,10 +33,7 @@ export class UserDashboardComponent implements OnInit {
   registro: Logro[] = [];
   registroFood: Logro[] = [];
   registroSport: Logro[] = [];
-  dtOptions: DataTables.Settings = {
-    pagingType: 'full_numbers',
-    pageLength: 5,
-  };
+  dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   enviadoFood: boolean = false;
   enviadoSport: boolean = false;

@@ -13,7 +13,7 @@ export class UserService {
   token = JSON.parse(<string>localStorage.getItem('jwt'));
 
   getRegistro(idUser: number){
-    const url = `${this.baseUrl}/user/${idUser}/registro`;
+    const url = `${this.baseUrl}/registro`;
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${this.token}`);
     return this.http.get<Logro[]>( url, { headers } );
@@ -33,7 +33,7 @@ export class UserService {
   }*/
 
   newRegistro(idUser:number, logro: Logro){
-    const url = `${this.baseUrl}/user/${idUser}/newLogro`;
+    const url = `${this.baseUrl}/newLogro`;
     const body = logro;
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${this.token}`);
@@ -41,7 +41,7 @@ export class UserService {
   }
 
   modificaRegistro(idUser:number, logro:Logro){
-    const url = `${this.baseUrl}/user/${idUser}/modificaLogro/${logro.id}`;
+    const url = `${this.baseUrl}/modificaLogro/${logro.id}`;
     const body = logro;
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${this.token}`);

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/interfaces';
 
 @Component({
-  selector: 'app-general',
-  templateUrl: './general.component.html',
-  styleUrls: ['./general.component.css']
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.css']
 })
-export class GeneralComponent implements OnInit {
+export class ChangePasswordComponent implements OnInit {
 
   constructor() { }
 
@@ -19,5 +19,4 @@ export class GeneralComponent implements OnInit {
   cargaDatos(){
     this.user = JSON.parse(<string>localStorage.getItem("user"));
   }
-
 }

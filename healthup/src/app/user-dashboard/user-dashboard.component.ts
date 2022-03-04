@@ -1,9 +1,10 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Logro, User } from '../interfaces/interfaces';
 import { UserService } from '../services/user.service';
 import { AuthServiceService } from '../services/auth-service.service';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -27,7 +28,9 @@ export class UserDashboardComponent implements OnInit {
     this.cargaRegistro();
   }
 
-  //VARIABLES:
+  //ATRIBUTOS:
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement!: DataTableDirective;
   user: User = JSON.parse(<string>localStorage.getItem('user'));
   idUser = this.user.id;
   registro: Logro[] = [];
@@ -68,7 +71,13 @@ export class UserDashboardComponent implements OnInit {
           .subscribe(async (resp) => {
             this.registro.push(resp);
             this.getUser(tipo); //actualizo avance
-            this.dtTrigger.next(resp);
+            this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+              // Destroy the table first
+              dtInstance.destroy();
+              // Call the dtTrigger to rerender again
+              this.dtTrigger.next(this.registro);
+            });
+            // this.dtTrigger.next(resp);
           //  this.ngOnDestroy();
           });
       }
@@ -86,6 +95,12 @@ export class UserDashboardComponent implements OnInit {
             .subscribe(async (resp) => {
               this.registro.splice(index, 1, resp); //elimino el objeto en esa posición y añado el logro modificado
               this.getUser(tipo);
+              this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+                // Destroy the table first
+                dtInstance.destroy();
+                // Call the dtTrigger to rerender again
+                this.dtTrigger.next(this.registro);
+              });
               //this.dtTrigger.next(resp);
               // this.ngOnDestroy();
             });
@@ -108,7 +123,13 @@ export class UserDashboardComponent implements OnInit {
       this.registro = resp;
       this.cargaRegistroPorTipo('food');
       this.cargaRegistroPorTipo('sport');
-      this.dtTrigger.next(null);
+      // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      //   // Destroy the table first
+      //   dtInstance.destroy();
+      //   // Call the dtTrigger to rerender again
+      //   this.dtTrigger.next(resp);
+      // });
+      this.dtTrigger.next(resp);
     });
   }
 

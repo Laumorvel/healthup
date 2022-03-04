@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { UserSettingsRoutingModule } from './user-settings-routing.module';
 import { UserSettingsComponent } from './user-settings.component';
 import { GeneralComponent } from './general/general.component';
-import { FormsModule } from '@angular/forms';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
   declarations: [
     UserSettingsComponent,
-    GeneralComponent
+    GeneralComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,

@@ -5,7 +5,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { catchError, map, Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../interfaces/interfaces';
 

@@ -1,4 +1,4 @@
-import { identifierModuleUrl } from '@angular/compiler';
+import { RouterLinkActive } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../interfaces/interfaces';
@@ -14,7 +14,7 @@ export class MenuInicioComponent implements OnInit {
   ngOnInit(): void {}
 
   @Input()registrado: boolean = false;
-  userId = localStorage.getItem('userId');
+  userId = JSON.parse(<string>localStorage.getItem('userId'));
   user:User = JSON.parse(<string>localStorage.getItem('user'));
   //idU:number = this.user.id;
 

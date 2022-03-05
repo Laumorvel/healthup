@@ -41,4 +41,11 @@
   font-size: 40px;
 }
 
+.nombre{
+  font-weight: bold;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  left: 91.5%;
+  position: absolute;
+}
 

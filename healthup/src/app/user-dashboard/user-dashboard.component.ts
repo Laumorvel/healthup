@@ -19,6 +19,9 @@ export class UserDashboardComponent implements OnInit {
     private authService: AuthServiceService
   ) {}
 
+  /**
+   * Carga los datos de las tablas y del usuario
+   */
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -28,8 +31,9 @@ export class UserDashboardComponent implements OnInit {
     this.cargaRegistro();
   }
 
-  //ATRIBUTOS:
-  @ViewChild(DataTableDirective, {static: false})
+  //---------------------------------ATRIBUTOS:
+
+  @ViewChild(DataTableDirective, { static: false })
   dtElement!: DataTableDirective;
   user: User = JSON.parse(<string>localStorage.getItem('user'));
   idUser = this.user.id;
@@ -48,9 +52,16 @@ export class UserDashboardComponent implements OnInit {
   porcentajeSport: string = '0';
   porcentajeFood: string = '0';
 
-  //MÉTODOS:
+  //--------------------------------MÉTODOS:
 
- pulsado(tipo: string, logrado: boolean) {
+  /**
+   * Crea y añade un nuevo logro en caso de que sea la primera vez que se pulsa el botón en el día de hoy (POST)
+   * Modifica un logro en caso de no ser la primera vez que se pulsa el botón el día de hoy (PUT) ya que el usuario puede cambiar de opinión respecto a si ha cumplido o no el logro
+   * Si pulsa el mismo botón que pulsó la última vez no se hace petición, sería innecesario
+   * @param tipo
+   * @param logrado
+   */
+  pulsado(tipo: string, logrado: boolean) {
     let index = this.registro.findIndex(
       (logro) => logro.fecha === this.fechaHoy && logro.tipo === tipo
     ); //Compruebo que la fecha del logro tipo food no se encuentra en la lista = aún no se ha pulsado hoy
@@ -64,10 +75,10 @@ export class UserDashboardComponent implements OnInit {
           logro.logradoDia === logrado
       ) == -1
     ) {
-      //SE PULSA POR PRIMERA VEZ ESE DÍA
+      //SE PULSA POR PRIMERA VEZ ESE DÍA (POST)
       if (index == -1) {
         this.userService
-          .newRegistro(this.idUser, this.creaLogro(tipo, logrado))
+          .newRegistro( this.creaLogro(tipo, logrado))
           .subscribe(async (resp) => {
             this.registro.push(resp);
             this.getUser(tipo); //actualizo avance
@@ -78,10 +89,10 @@ export class UserDashboardComponent implements OnInit {
               this.dtTrigger.next(this.registro);
             });
             // this.dtTrigger.next(resp);
-          //  this.ngOnDestroy();
+
           });
       }
-      //SE CAMBIA EL LOGRO DE TRUE A FALSE
+      //SE CAMBIA EL LOGRO DE TRUE A FALSE (put)
       else {
         const logro = this.registro.find(
           (logro) => logro.fecha === this.fechaHoy && logro.tipo === tipo,
@@ -91,7 +102,7 @@ export class UserDashboardComponent implements OnInit {
           //Si no lo compruebo, me aparece que la variable puede ser undefined
           logro.logradoDia = logrado;
           this.userService
-            .modificaRegistro(this.idUser, logro)
+            .modificaRegistro( logro)
             .subscribe(async (resp) => {
               this.registro.splice(index, 1, resp); //elimino el objeto en esa posición y añado el logro modificado
               this.getUser(tipo);
@@ -102,13 +113,19 @@ export class UserDashboardComponent implements OnInit {
                 this.dtTrigger.next(this.registro);
               });
               //this.dtTrigger.next(resp);
-              // this.ngOnDestroy();
+
             });
         }
       }
     }
   }
 
+  /**
+   * Crea un logro cuando se va a hacer un POST
+   * @param tipo
+   * @param logrado
+   * @returns
+   */
   creaLogro(tipo: string, logrado: boolean): Logro {
     const logro: Logro = {
       fecha: this.fechaHoy,
@@ -118,39 +135,45 @@ export class UserDashboardComponent implements OnInit {
     return logro;
   }
 
+  /**
+   * Cuando arranca carga el registro de logros del usuario
+   */
   cargaRegistro() {
-    this.userService.getRegistro(this.user.id).subscribe((resp) => {
+    this.userService.getRegistro().subscribe((resp) => {
       this.registro = resp;
       this.cargaRegistroPorTipo('food');
       this.cargaRegistroPorTipo('sport');
-      // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      //   // Destroy the table first
-      //   dtInstance.destroy();
-      //   // Call the dtTrigger to rerender again
-      //   this.dtTrigger.next(resp);
-      // });
-      this.dtTrigger.next(resp);
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        // Destroy the table first
+        dtInstance.destroy();
+        // Call the dtTrigger to rerender again
+        this.dtTrigger.next(resp);
+      });
+      //this.dtTrigger.next(resp);
     });
   }
 
-  cargaPorcentaje(tipo:string){
-    if(tipo == 'sport'){
+  /**
+   * Método para actualizar la barra de progreso de los objetivos
+   * @param tipo
+   */
+  cargaPorcentaje(tipo: string) {
+    if (tipo == 'sport') {
       let sumaAvance = 100 / this.objetivoSport;
       let avanceActual = sumaAvance * Number(this.avanceSport);
       this.porcentajeSport = avanceActual.toString();
-      if(this.objetivoSport <= this.avanceSport){
+      if (this.objetivoSport <= this.avanceSport) {
         this.porcentajeSport = '100';
       }
-    }else{
+    } else {
       let sumaAvance = 100 / this.objetivoFood;
       let avanceActual = sumaAvance * Number(this.avanceFood);
       this.porcentajeFood = avanceActual.toString();
-      if(this.objetivoFood <= this.avanceFood){
+      if (this.objetivoFood <= this.avanceFood) {
         this.porcentajeFood = '100';
       }
     }
   }
-
 
   /**
    * Carga la tabla según el tipo que se seleccione,
@@ -162,12 +185,27 @@ export class UserDashboardComponent implements OnInit {
 
     if (tipo == 'food') {
       this.registroFood = lista;
-
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        // Destroy the table first
+        dtInstance.destroy();
+        // Call the dtTrigger to rerender again
+        this.dtTrigger.next(lista);
+      });
     } else {
       this.registroSport = lista;
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        // Destroy the table first
+        dtInstance.destroy();
+        // Call the dtTrigger to rerender again
+        this.dtTrigger.next(lista);
+      });
     }
   }
 
+  /**
+   * Consigue la información del usuario y actualiza el avance, la barra de porcentaje y el resgistro de logros por tipo
+   * @param tipo
+   */
   async getUser(tipo: string) {
     await this.authService.loginGetUser().subscribe((resp) => {
       this.user = resp;
@@ -175,11 +213,16 @@ export class UserDashboardComponent implements OnInit {
       this.avanceSport = resp.avanceSemanaSport;
       localStorage.setItem('user', JSON.stringify(resp));
       this.cargaPorcentaje(tipo);
-      this.cargaRegistroPorTipo(tipo);//para actualizar la lista
+      this.cargaRegistroPorTipo(tipo); //para actualizar la lista
     });
   }
 
-  cargaUser(){
+  /**
+   * Carga la información del usuario en oninit.
+   * Actualiza las barras de progreso.
+   * Actualiza avance.
+   */
+  cargaUser() {
     this.authService.loginGetUser().subscribe((resp) => {
       this.user = resp;
       this.avanceFood = resp.avanceSemanaFood;
@@ -189,25 +232,4 @@ export class UserDashboardComponent implements OnInit {
     });
   }
 
-  compruebaAvance() {
-    this.authService.loginGetUser().subscribe((resp) => {
-      this.user = resp;
-
-    });
-  }
-
-  aniadeATipo(tipo: string, logro: Logro) {
-    if (tipo == 'food') {
-      this.registroFood.push(logro);
-    } else {
-      this.registroSport.push(logro);
-    }
-  }
-
-
-
-  ngOnDestroy(): void {
-    console.log('holi');
-    this.dtTrigger.unsubscribe();
-  }
 }

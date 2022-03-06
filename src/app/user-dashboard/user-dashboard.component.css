@@ -43,9 +43,51 @@
 
 .nombre{
   font-weight: bold;
-  margin-left: 2rem;
   margin-top: 1rem;
-  left: 91.5%;
-  position: absolute;
+}
+/*PC*/
+@media screen and (min-width: 1450px) {}
+/* Tablet  */
+@media screen and (min-width: 1258px) and (max-width: 1449px) {
+  .nombre{
+
+  }
+}
+/*Móvil*/
+@media screen and (min-width: 535px) and (max-width: 1257px) {
+  .nombre{
+
+  }
+}
+/*Móvil*/
+@media screen and (max-width: 950px) {
+  .title{
+    font-size: 50px;
+  }
+}
+
+/*Móvil*/
+@media screen and (min-width: 768px) and (max-width: 1040px) {
+  .cartaFood{
+    width: 80%;
+    margin: auto;
+  }
+
+  .cartaSport{
+    width: 80%;
+    margin: auto;
+
+  }
+}
+@media screen and (min-width: 1040px) and (max-width: 1400px) {
+  .cartaFood{
+    width: 40%;
+    margin: 30%;
+  }
+
+  .cartaSport{
+    width: 40%;
+    margin: 30%;
+  }
 }
 

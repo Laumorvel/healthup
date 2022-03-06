@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Dancing+Script&family=Roboto+Serif:wght@100&family=Satisfy&family=Yellowtail&display=swap");
+
+.icon {
+  max-width: 50px;
+  height: auto;
+}
+
+.title {
+  text-shadow: 4px 4px 2px #fef9c7;
+  font-family: "Satisfy", cursive;
+  font-weight: bold;
+  font-size: 70px;
+}
+
+.iconito{
+  max-width: 30px;
+  height: auto;
+}
+
+.boton{
+  width: fit-content;
+  border: solid 1px;
+  margin-bottom: 2em;
+}
+
+.yes{
+  margin-right: 2em;
+  background-color: rgb(161, 207, 161);
+}
+
+.no{
+  background-color: rgb(214, 181, 181);
+}
+
+
+.cartaFood{
+  margin-right: 10px;
+}
+
+.avance{
+  font-size: 40px;
+}
+
+.nombre{
+  font-weight: bold;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  left: 91.5%;
+  position: absolute;
+}
+

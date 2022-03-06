@@ -1,0 +1,47 @@
+
+<!-- BARRA DE NAVEGACIÓN / PARA EL DASHBOARD -->
+<div class="row fondoGris">
+
+  <nav class="navbar navbar-expand-sm navbar-dark py-2">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">
+        <img src="../../assets/img/LOGOH-modified.png" class="icon hoverZoom" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item hoverZoom">
+            <a class="nav-link text-black hover-zoom" routerLink="/#"
+              >Tracker</a
+            >
+          </li>
+          <li class="nav-item hoverZoom">
+            <a class="nav-link text-black hover-zoom" routerLink="/userDashboard/{{userId}}"
+              >Dashboard</a
+            >
+          </li>
+          <li class="nav-item hoverZoom">
+            <a
+              class="nav-link text-black mx-md-3 mx-sm-3"
+              routerLink="#"
+              >Contact Us</a
+            >
+          </li>
+          <!--Login-->
+          <li class="nav-item hoverZoom">
+            <a class="nav-link text-black" routerLink="/" (click)="logout()"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

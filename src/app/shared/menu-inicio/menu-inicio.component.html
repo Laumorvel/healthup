@@ -1,0 +1,92 @@
+
+<!-- BARRA DE NAVEGACIÓN / PARA EL HOME -->
+<div class="row fondoAzulClaro">
+  <nav class="navbar navbar-expand-sm navbar-dark py-2 topnav">
+    <div class="container-fluid">
+      <!--LOGO-->
+      <a class="navbar-brand" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <img src="../../assets/img/LOGOH-modified.png" class="icon hoverZoom" />
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--MENÚ-->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+        <!--NO LOGUEADO-->
+        <ul *ngIf="!registrado; else logueado" class="navbar-nav">
+
+          <li class="nav-item hoverZoom">
+            <a class="nav-link text-black mx-md-3 mx-sm-3" routerLink="/signUp"  routerLinkActive="active"
+              > <img src="../../assets/img/account.png" class="icon imgIconos signup" />Sign up</a
+            >
+          </li>
+          <li class="nav-item hoverZoom">
+            <a class="nav-link text-black" routerLink="/logIn"  routerLinkActive="active">
+              <img src="../../assets/img/login.png" class="icon login" />Log in</a>
+          </li>
+          <li class="nav-item hoverZoom">
+            <a
+              class="nav-link text-black mx-md-3 mx-sm-3"
+              routerLink="/contactUs"  routerLinkActive="active"
+              >
+              <img src="../../assets/img/email.png" class="icon imgIconos" />Contact Us</a
+            >
+          </li>
+        </ul>
+
+        <!--LOGUEADO-->
+        <ng-template #logueado>
+          <ul class="navbar-nav position-relative">
+
+            <li class="nav-item hoverZoom">
+              <a class="nav-link text-black hover-zoom" routerLink="/userDashboard/{{userId}}"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                ><img src="../../assets/img/casa.png" class="icon casa" /> Dashboard</a
+              >
+            </li>
+            <li class="nav-item hoverZoom">
+              <a class="nav-link text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"  routerLinkActive="active"
+                ><img src="../../assets/img/logout(1).png" class="icon imgIconos" /> Logout</a
+              >
+            </li>
+          </ul>
+
+
+        <!--MODAL-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content text-center">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">LOGOUT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure?
+              </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="logout()">Yes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+            <li class="nav-item settings hoverZoom">
+              <a class="text-black" routerLink="/userDashboard/{{userId}}/userSettings"  routerLinkActive="active">
+                <img src="../../assets/img/settings.png" class="icon imgIconos" /> Settings
+              </a>
+            </li>
+
+        </ng-template>
+
+
+      </div>
+    </div>
+  </nav>
+</div>

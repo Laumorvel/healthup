@@ -1,0 +1,16 @@
+button{
+  margin: 0.5rem;
+}
+
+a{
+  font-size: 22px;
+  font-weight: bold;
+}
+
+button a {
+  color: black;
+}
+
+button:hover a{
+  color: white;
+}

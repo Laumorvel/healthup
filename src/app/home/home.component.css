@@ -1,0 +1,248 @@
+/*FUENTE*/
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Dancing+Script&family=Roboto+Serif:wght@100&family=Satisfy&family=Yellowtail&display=swap");
+* {
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+}
+
+.titulo {
+  font-family: "Alfa Slab One", cursive;
+}
+
+span.titulo {
+  color: #026670;
+}
+
+.titulo2 {
+  color: #919191;
+}
+
+.grey-bg {
+  background-color: #f5f7fa;
+}
+
+.h100 {
+  height: 100%;
+  min-height: 20vh;
+}
+
+.fondoAzulClaro {
+  background-color: aliceblue;
+}
+
+.fondoGris {
+  background-color: rgb(226, 223, 223);
+}
+
+.icon {
+  max-width: 40px;
+  height: auto;
+}
+
+.hoverZoom:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.img {
+  width: 30%;
+}
+
+.centrar {
+  text-align: center;
+}
+
+.carousel {
+  margin: 0;
+  display: block;
+  margin-top: 2em;
+}
+
+.card1 {
+  background-image: url("../../assets/img/ninia.jpg");
+  background-size: 100% 100%;
+  font-weight: bold;
+  opacity: 0.4;
+}
+
+.card2 {
+  background-image: url("../../assets/img/niniaPatines.jpg");
+  background-size: 100% 100%;
+  font-weight: bold;
+  opacity: 0.4;
+}
+
+.card3 {
+  background-image: url("../../assets/img/pesas.jpg");
+  background-size: 100% 100%;
+  font-weight: bold;
+  opacity: 0.4;
+}
+
+.card:hover {
+  opacity: 100;
+
+  transform: scale(1.1);
+}
+
+.fondoInicio {
+  background-image: url("../../assets/img/girlSmiling.jpg");
+  background-size: 100% 100%;
+  font-weight: bold;
+  height: 100%;
+}
+
+.cardCard {
+  border: none;
+  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
+  border-radius: 20px;
+  min-height: 450px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.card-has-bg {
+  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.bottom-aligned {
+  position: absolute;
+  bottom: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-family: "Alfa Slab One", cursive;
+}
+
+.contenedor {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  background-attachment: fixed;
+  background-size: 90% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100%;
+}
+
+/*PC*/
+@media screen and (min-width: 1450px) {
+  .tituloOficial {
+    font-family: "Satisfy", cursive;
+    font-weight: bold;
+    font-size: 110px;
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    text-shadow: 4px 4px 2px #fef9c7;
+  }
+  .subtitulo {
+    font-size: 40px;
+    position: absolute;
+    top: 40%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+  }
+  .imgFondo {
+    background-image: url("../../assets/img/smilingGirlFixed.jpg");
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .row.centro {
+    --bs-gutter-x: 0 !important;
+  }
+
+  .row.card-deck {
+    --bs-gutter-x: 0 !important;
+  }
+}
+/* Tablet  */
+@media screen and (min-width: 1258px) and (max-width: 1449px) {
+  .tituloOficial {
+    font-family: "Satisfy", cursive;
+    font-weight: bold;
+    font-size: 60px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 8px 8px 2px #fef9c7;
+  }
+  .subtitulo {
+    font-size: 20px;
+    position: absolute;
+    font-weight: bold;
+    top: 75%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+  }
+  .imgFondo {
+    background-image: url("../../assets/img/smilingGirlFixed.jpg");
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    height: 30%;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  img {
+    width: 90% !important;
+  }
+  .row.centro {
+    --bs-gutter-x: 0 !important;
+  }
+}
+
+/*Móvil*/
+@media screen and (max-width: 1257px) {
+  .tituloOficial {
+    font-family: "Satisfy", cursive;
+    font-weight: bold;
+    font-size: 50px;
+    margin-top: 1em;
+    text-shadow: 8px 8px 2px #fef9c7;
+  }
+  .subtitulo {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .imagenPrincipal {
+    width: 100%;
+    display: none;
+  }
+  .imgFondo {
+    background-image: none;
+  }
+  img {
+    width: 90% !important;
+  }
+
+  .contenedor {
+    background-image: none;
+  }
+  .row.centro {
+    --bs-gutter-x: 0 !important;
+  }
+  .row.card-deck {
+    --bs-gutter-x: 0 !important;
+  }
+}
+
+.mb-5 {
+  padding: 0 !important;
+}
+
+.about {
+  font-family: "Satisfy", cursive;
+  font-weight: bold;
+  font-size: 45px;
+}
+

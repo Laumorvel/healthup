@@ -1,0 +1,90 @@
+<h1 class="text-center mt-4">SIGN UP FORM</h1>
+<hr />
+
+<!--FORMULARIO-->
+<form
+  autocomplete="off"
+  [formGroup]="miFormulario"
+  (ngSubmit)="submitFormulario($event)"
+  class="m-4"
+>
+  <div class="row">
+    <!-- Name -->
+    <div class="form-group col-md-6">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        name="mame"
+      />
+      <span class="form-text text-danger" *ngIf="campoNoValido('name')">
+        {{ nameError }}
+      </span>
+    </div>
+
+    <!--Surname-->
+    <div class="form-group col-md-6">
+      <label for="surname">Surname</label>
+      <input type="text" class="form-control" formControlName="surname" />
+      <span class="form-text text-danger" *ngIf="campoNoValido('surname')">
+        {{ surnameError }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        debounce="3000"
+        formControlName="email"
+      />
+      <span class="form-text text-danger" *ngIf="campoNoValido('email')">
+        {{ emailErrorMsg }}
+      </span>
+    </div>
+
+    <!-- Username -->
+    <div class="form-group col-md-6">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" formControlName="username" />
+      <span class="form-text text-danger" *ngIf="campoNoValido('username')">
+        {{ usernameError }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Password -->
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label class="col-form-label">Password</label>
+      <input type="password" class="form-control" formControlName="password" />
+      <span class="form-text text-danger" *ngIf="campoNoValido('password')">
+        Passwords must contain at least 6 characters.
+      </span>
+    </div>
+
+    <!-- Password2 -->
+    <div class="form-group col-md-6">
+      <label class="col-form-label">Confirm Password</label>
+      <input type="password" class="form-control" formControlName="password2" />
+      <span class="form-text text-danger" *ngIf="campoNoValido('password2')">
+        Both passwords must be equal.
+      </span>
+    </div>
+  </div>
+
+  <!--OBJETIVOS-->
+  <!--Solo se activa cuando el formulario es válido-->
+  <div *ngIf="miFormulario.valid">
+    <app-quiz
+      [nombre]="miFormulario.value.name"
+      (sendObjetivos)="submitFormulario($event)"
+    ></app-quiz>
+  </div>
+  <!--Fin del div de objetivos (oculto)-->
+</form>

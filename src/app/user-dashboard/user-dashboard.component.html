@@ -1,0 +1,280 @@
+<div class="row mb-5">
+  <p class="nombre"><img src="../../assets/img/account.png" class="iconito" />  {{ user.username}}</p>
+  <p class="title text-center mt-5">Did you accomplish your goals today?</p>
+
+  <div class="col-md-4"></div>
+  <!--SPORT-->
+  <div class="col-md-2 card mt-5 mb-5 border-1 cartaFood">
+    <div class="card-content text-center mt-5 justify-content-center">
+      <!--Objetivo y avance-->
+      <div class="mb-3 avance title">
+        {{ avanceSport }} / {{ objetivoSport }}
+      </div>
+      <!--BARRA DE PROGRESO-->
+      <div class="progress mb-4">
+        <div class="progress-bar progress-bar-info active" role="progressbar"
+        aria-valuenow="" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': porcentajeSport+'%'}">
+        </div>
+      </div>
+      <!--imagen pesas-->
+      <img src="../../assets/img/dumbbell.png" class="icon" />
+
+      <!--caja-->
+      <div class="card mt-5 border-0 w-100 d-inline-block">
+        <!--YES-->
+        <button class="btn boton yes" (click)="pulsado('sport', true)">
+          <img src="../../assets/img/cheque.png" name="yes" class="iconito" />
+        </button>
+        <!--NO-->
+        <button class="btn boton no" (click)="pulsado('sport', false)">
+          <img src="../../assets/img/incorrect.png" name="no" class="iconito" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--FOOD-->
+  <div class="col-md-2 card mt-5 mb-5 border-1 cartaSport">
+    <div class="card-content text-center mt-5">
+      <!--Avance y objetivo-->
+      <div class="mb-3 avance title">{{ avanceFood }} / {{ objetivoFood }}</div>
+       <!--BARRA DE PROGRESO-->
+       <div class="progress mb-4">
+        <div class="progress-bar progress-bar-info active" role="progressbar"
+        aria-valuenow="" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': porcentajeFood+'%'}">
+        </div>
+      </div>
+      <!--imagen comida-->
+      <img src="../../assets/img/nutrition.png" class="icon" />
+      <!--caja-->
+      <div class="card mt-5 w-100 border-0 d-inline-block">
+        <!--YES-->
+        <button class="boton btn yes" (click)="pulsado('food', true)">
+          <img src="../../assets/img/cheque.png" name="yes" class="iconito" />
+        </button>
+        <!--NO-->
+        <button class="boton btn no" (click)="pulsado('food', false)">
+          <img src="../../assets/img/incorrect.png" name="no" class="iconito" />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+<!--TABS-->
+<div class="container justify-content-center col-md-9 col-sm-12 col-xs-12">
+  <!--Pestañas-->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        data-bs-toggle="tab"
+        data-bs-target="#all"
+        type="button"
+        role="tab"
+        aria-current="page"
+        aria-controls="all"
+        aria-selected="true"
+      >
+        All
+      </button>
+    </li>
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        data-bs-toggle="tab"
+        data-bs-target="#food"
+        type="button"
+        role="tab"
+        aria-controls="food"
+        aria-selected="false"
+      >
+        Meal tracking
+      </button>
+    </li>
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        data-bs-toggle="tab"
+        data-bs-target="#sport"
+        type="button"
+        role="tab"
+        aria-controls="sport"
+        aria-selected="false"
+      >
+        Training tracking
+      </button>
+    </li>
+  </ul>
+  <!--Contenido de las pestañas-->
+  <div class="tab-content">
+    <!--ALL-->
+    <div
+      class="tab-pane fade show active"
+      id="all"
+      role="tabpanel"
+      aria-labelledby="all-tab"
+    >
+      <table
+        datatable
+        [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+        class="table table-striped table-bordered row-border table-hover"
+      >
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Success</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let logro of registro">
+            <td>{{ logro.fecha }}</td>
+            <td>
+              <!--TIPO-->
+              <ng-container *ngIf="logro.tipo === 'food'" ;else second
+                ><img src="../../assets/img/nutrition.png" class="iconito" />
+              </ng-container>
+              <ng-container #second *ngIf="logro.tipo === 'sport'"
+                ><img src="../../assets/img/dumbbell.png" class="iconito"
+              /></ng-container>
+            </td>
+            <td>
+              <!--LOGRADO-->
+              <ng-container *ngIf="logro.noRegistrado != null" ;else second
+                ><img
+                  src="../../assets/img/signo-de-interrogacion.png"
+                  class="iconito"
+              /></ng-container>
+              <ng-container
+                #second
+                *ngIf="logro.logradoDia && logro.noRegistrado == null"
+                ;else
+                third
+                ><img src="../../assets/img/garrapata.png" class="iconito"
+              /></ng-container>
+              <ng-container
+                #third
+                *ngIf="!logro.logradoDia && logro.noRegistrado == null"
+                ><img src="../../assets/img/cancel.png" class="iconito"
+              /></ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!--FOOD-->
+    <div
+      class="tab-pane fade"
+      id="food"
+      role="tabpanel"
+      aria-labelledby="food-tab"
+    >
+      <table
+        datatable="ng"
+        [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+        class="table table-striped table-bordered row-border table-hover"
+      >
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Success</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let logro of registroFood">
+            <td>{{ logro.fecha }}</td>
+            <td>
+              <!--TIPO-->
+              <img src="../../assets/img/nutrition.png" class="iconito" />
+            </td>
+            <td>
+              <!--LOGRADO-->
+              <ng-container *ngIf="logro.noRegistrado != null" ;else second
+                ><img
+                  src="../../assets/img/signo-de-interrogacion.png"
+                  class="iconito"
+              /></ng-container>
+              <ng-container
+                #second
+                *ngIf="logro.logradoDia && logro.noRegistrado == null"
+                ;else
+                third
+                ><img src="../../assets/img/garrapata.png" class="iconito"
+              /></ng-container>
+              <ng-container
+                #third
+                *ngIf="!logro.logradoDia && logro.noRegistrado == null"
+                ><img src="../../assets/img/cancel.png" class="iconito"
+              /></ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!--SPORT-->
+    <div
+      class="tab-pane fade"
+      id="sport"
+      role="tabpanel"
+      aria-labelledby="sport-tab"
+    >
+      <table
+        datatable
+        [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+        class="table table-striped table-bordered row-border table-hover"
+      >
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Success</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let logro of registroSport" >
+
+              <td>{{ logro.fecha }}</td>
+              <td>
+                <!--TIPO-->
+                <img src="../../assets/img/dumbbell.png" class="iconito"
+              />
+              </td>
+              <td>
+                <!--LOGRADO-->
+                <ng-container *ngIf="logro.noRegistrado != null" ;else second
+                  ><img
+                    src="../../assets/img/signo-de-interrogacion.png"
+                    class="iconito"
+                /></ng-container>
+                <ng-container
+                  #second
+                  *ngIf="logro.logradoDia && logro.noRegistrado == null"
+                  ;else
+                  third
+                  ><img src="../../assets/img/garrapata.png" class="iconito"
+                /></ng-container>
+                <ng-container
+                  #third
+                  *ngIf="!logro.logradoDia && logro.noRegistrado == null"
+                  ><img src="../../assets/img/cancel.png" class="iconito"
+                /></ng-container>
+              </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div>
+  <app-boton-flotante ubicacion="Dashboard"></app-boton-flotante>
+</div>

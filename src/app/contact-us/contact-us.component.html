@@ -1,0 +1,78 @@
+
+<section class="get-in-touch">
+  <h1 class="title">Get in touch</h1>
+
+  <form
+    class="contact-form row"
+    autocomplete="off"
+    [formGroup]="miFormulario"
+    (ngSubmit)="submitFormulario()"
+  >
+
+    <div class="form-field col-lg-6">
+      <input
+        placeholder="Name"
+        id="name"
+        class="input-text js-input"
+        formControlName="name"
+        type="text"
+        required
+      />
+      <span class="form-text text-danger" *ngIf="campoNoValido('name')">
+        {{ error }}
+      </span>
+    </div>
+    <div class="form-field col-lg-6">
+      <input
+        placeholder="Email"
+        id="email"
+        class="input-text js-input"
+        formControlName="email"
+        type="email"
+        required
+      />
+      <span class="form-text text-danger" *ngIf="campoNoValido('email')">
+        {{ emailError }}
+      </span>
+    </div>
+    <div class="form-field col-lg-6">
+      <input
+        placeholder="Company name"
+        id="company"
+        class="input-text js-input"
+        type="text"
+        formControlName="companyName"
+      />
+    </div>
+    <div class="form-field col-lg-6">
+      <input
+        placeholder="Phone number"
+        id="phone"
+        class="input-text js-input"
+        type="tel"
+        formControlName="phone"
+      />
+    </div>
+    <div class="form-field col-lg-12">
+      <input
+        placeholder="Message"
+        id="message"
+        class="input-text js-input"
+        type="text"
+        required
+        formControlName="mssg"
+      />
+      <span class="form-text text-danger" *ngIf="campoNoValido('mssg')">
+        {{ mssgError }}
+      </span>
+    </div>
+    <div class="form-field col-lg-12 text-center">
+      <input
+        class="submit-btn"
+        type="submit"
+        value="Submit"
+        [disabled]="miFormulario.invalid"
+      />
+    </div>
+  </form>
+</section>

@@ -1,0 +1,24 @@
+<div class="container-fluid h100">
+  <!-- ENCABEZADO -->
+  <div class="row">
+    <!--MENU-->
+    <app-menu-inicio [registrado]="registrado"></app-menu-inicio>
+  </div>
+
+  <div class="row my-4 mt-0">
+    <div>
+      <router-outlet>
+
+
+      </router-outlet>
+    </div>
+    <!--MENÚ AUXILIAR (NAMED ROUTER-OUTLET PARA SETTINGS)-->
+    <div class="row">
+      <div class="settings-content">
+        <router-outlet name="user"></router-outlet>
+      </div>
+    </div>
+  </div>
+
+</div>
+

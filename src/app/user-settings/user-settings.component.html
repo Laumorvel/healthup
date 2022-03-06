@@ -1,0 +1,21 @@
+<div class="my-4 mt-2 ">
+  <!--SUBMENÚ-->
+  <nav class="navbar navbar-light justify-content-center submenu">
+    <form class="form-inline">
+      <button class="btn btn-outline-dark btn-lg" type="button">
+        <a
+          class="nav-link "
+          [routerLink]="[{ outlets: { user: ['general'] } }]"
+          >About</a
+        >
+      </button>
+      <button class="btn btn-outline-dark btn-lg" type="button">
+        <a
+          class="nav-link"
+          [routerLink]="[{ outlets: { user: ['changePassword'] } }]"
+          >Change Password</a
+        >
+      </button>
+    </form>
+  </nav>
+</div>

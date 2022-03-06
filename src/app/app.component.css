@@ -1,0 +1,63 @@
+/*FUENTE*/
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&family=Federo&family=Quicksand:wght@300&display=swap");
+
+* {
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+}
+
+.h100 {
+  height: 100%;
+  min-height: 20vh;
+}
+
+header{
+  background-image: url("../assets/img/pistaSinLogo.png");
+}
+
+.fondoAzulClaro{
+  background-color: #FEF9C7;
+}
+
+.fondoGris{
+  background-color: rgb(226, 223, 223);
+}
+
+.icon{
+  max-width: 40px;
+  height: auto;
+}
+
+.hoverZoom:hover{
+  transform: scale(1.1);
+  cursor:pointer;
+}
+
+.img{
+  width: 30%;
+}
+
+/*Móvil*/
+@media screen and (max-width: 480px) {
+  .logo {
+    width: 35%;
+  }
+}
+
+/* Tablet  */
+@media screen and (min-width: 481px) and (max-width: 846px) {
+  .logo {
+    width: 30%;
+  }
+}
+/* PC*/
+@media screen and (min-width: 847px) and (max-width: 2100px) {
+  .logo {
+    width: 13%;
+  }
+}
+
+.content{
+  display:flex;
+}
+

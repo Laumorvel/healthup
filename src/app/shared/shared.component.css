@@ -1,0 +1,38 @@
+/*FUENTE*/
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&family=Federo&family=Quicksand:wght@300&display=swap");
+
+* {
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+}
+
+.h100 {
+  height: 100%;
+  min-height: 20vh;
+}
+
+.fondoAzulClaro{
+  background-color: #FEF9C7;
+}
+
+.fondoGris{
+  background-color: rgb(226, 223, 223);
+}
+
+.icon{
+  max-width: 40px;
+  height: auto;
+}
+
+.hoverZoom:hover{
+  transform: scale(1.1);
+  cursor:pointer;
+}
+
+.img{
+  width: 30%;
+}
+
+.logo{
+  width: 9%;
+}

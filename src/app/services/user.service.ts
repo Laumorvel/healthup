@@ -19,7 +19,7 @@ export class UserService {
    * @returns Lista de logros de un usuario
    */
   getRegistro() {
-    const url = `${this.baseUrl}/registro`;
+    const url = `${this.baseUrl}/logro`;
     const headers = new HttpHeaders().set(
       'Authorization',
       `Bearer ${this.token}`
@@ -33,7 +33,7 @@ export class UserService {
    * @returns
    */
   newRegistro( logro: Logro) {
-    const url = `${this.baseUrl}/newLogro`;
+    const url = `${this.baseUrl}/logro`;
     const body = logro;
     const headers = new HttpHeaders().set(
       'Authorization',
@@ -48,7 +48,7 @@ export class UserService {
    * @returns
    */
   modificaRegistro( logro: Logro) {
-    const url = `${this.baseUrl}/modificaLogro/${logro.id}`;
+    const url = `${this.baseUrl}/logro/${logro.id}`;
     const body = logro;
     const headers = new HttpHeaders().set(
       'Authorization',

@@ -53,3 +53,19 @@ label{
   font-weight: bold;
   font-size: 70px;
 }
+
+@media screen and (max-width: 1374px) and (min-width: 771px){
+  .datos1{
+    width: 100%;
+  }
+  .datos{
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 770px){
+  .contenido{
+    margin: 0px;
+  }
+}

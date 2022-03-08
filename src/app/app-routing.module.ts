@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'userDashboard/:id',
-    canActivate: [AuthGuardGuard], //para que no se pueda acceder directamente al dashboard escribiendo la url
+    canActivate: [AuthGuardGuard],
     loadChildren: () =>
       import('./user-dashboard/user-dashboard.module').then(
         (m) => m.UserDashboardModule
@@ -37,6 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'userDashboard/:id/userSettings',
+    canActivate: [AuthGuardGuard],
     loadChildren: () =>
       import('./user-settings/user-settings.module').then(
         (m) => m.UserSettingsModule

@@ -45,20 +45,7 @@
   font-weight: bold;
   margin-top: 1rem;
 }
-/*PC*/
-@media screen and (min-width: 1450px) {}
-/* Tablet  */
-@media screen and (min-width: 1258px) and (max-width: 1449px) {
-  .nombre{
 
-  }
-}
-/*Móvil*/
-@media screen and (min-width: 535px) and (max-width: 1257px) {
-  .nombre{
-
-  }
-}
 /*Móvil*/
 @media screen and (max-width: 950px) {
   .title{
@@ -76,9 +63,9 @@
   .cartaSport{
     width: 80%;
     margin: auto;
-
   }
 }
+
 @media screen and (min-width: 1040px) and (max-width: 1400px) {
   .cartaFood{
     width: 40%;

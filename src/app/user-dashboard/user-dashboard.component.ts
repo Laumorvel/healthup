@@ -29,11 +29,13 @@ export class UserDashboardComponent implements OnInit {
     };
     this.cargaUser();
     this.cargaRegistro();
+
+
   }
 
   //---------------------------------ATRIBUTOS:
 
-  @ViewChild(DataTableDirective, { static: false })
+  @ViewChild(DataTableDirective)//, { static: false }
   dtElement!: DataTableDirective;
   user: User = JSON.parse(<string>localStorage.getItem('user'));
   idUser = this.user.id;
@@ -52,11 +54,14 @@ export class UserDashboardComponent implements OnInit {
   porcentajeSport: string = '0';
   porcentajeFood: string = '0';
 
+
+
   //--------------------------------MÉTODOS:
 
   /**
    * Crea y añade un nuevo logro en caso de que sea la primera vez que se pulsa el botón en el día de hoy (POST)
-   * Modifica un logro en caso de no ser la primera vez que se pulsa el botón el día de hoy (PUT) ya que el usuario puede cambiar de opinión respecto a si ha cumplido o no el logro
+   * Modifica un logro en caso de no ser la primera vez que se pulsa el botón el día de hoy (PUT) ya que el usuario
+   * puede cambiar de opinión respecto a si ha cumplido o no el logro
    * Si pulsa el mismo botón que pulsó la última vez no se hace petición, sería innecesario
    * @param tipo
    * @param logrado
@@ -64,7 +69,7 @@ export class UserDashboardComponent implements OnInit {
   pulsado(tipo: string, logrado: boolean) {
     let index = this.registro.findIndex(
       (logro) => logro.fecha === this.fechaHoy && logro.tipo === tipo
-    ); //Compruebo que la fecha del logro tipo food no se encuentra en la lista = aún no se ha pulsado hoy
+    );
 
     //NO SE PRESIONA EL MISMO BOTÓN EL MISMO DÍA
     if (
@@ -82,12 +87,11 @@ export class UserDashboardComponent implements OnInit {
           .subscribe(async (resp) => {
             this.registro.push(resp);
             this.getUser(tipo); //actualizo avance
-            this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-              // Destroy the table first
-              dtInstance.destroy();
-              // Call the dtTrigger to rerender again
-              this.dtTrigger.next(this.registro);
-            });
+            this.rerender();
+            // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            //   dtInstance.destroy();
+            //   this.dtTrigger.next(this.dtOptions);
+            // });
             // this.dtTrigger.next(resp);
 
           });
@@ -106,14 +110,12 @@ export class UserDashboardComponent implements OnInit {
             .subscribe(async (resp) => {
               this.registro.splice(index, 1, resp); //elimino el objeto en esa posición y añado el logro modificado
               this.getUser(tipo);
-              this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-                // Destroy the table first
-                dtInstance.destroy();
-                // Call the dtTrigger to rerender again
-                this.dtTrigger.next(this.registro);
-              });
+              // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+              //   dtInstance.destroy();
+              //   this.dtTrigger.next(this.dtOptions);
+              // });
               //this.dtTrigger.next(resp);
-
+              this.rerender();
             });
         }
       }
@@ -143,12 +145,12 @@ export class UserDashboardComponent implements OnInit {
       this.registro = resp;
       this.cargaRegistroPorTipo('food');
       this.cargaRegistroPorTipo('sport');
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        // Destroy the table first
-        dtInstance.destroy();
-        // Call the dtTrigger to rerender again
-        this.dtTrigger.next(resp);
-      });
+
+      this.rerender();
+      // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      //   dtInstance.destroy();
+      //   this.dtTrigger.next(this.dtOptions);
+      // });
       //this.dtTrigger.next(resp);
     });
   }
@@ -185,20 +187,23 @@ export class UserDashboardComponent implements OnInit {
 
     if (tipo == 'food') {
       this.registroFood = lista;
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        // Destroy the table first
-        dtInstance.destroy();
-        // Call the dtTrigger to rerender again
-        this.dtTrigger.next(lista);
-      });
+      // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      //   dtInstance.destroy();
+      //   this.dtTrigger.next(this.dtOptions);
+      // });
+      this.rerender();
+
+      //this.dtTrigger.next(lista);
     } else {
       this.registroSport = lista;
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        // Destroy the table first
-        dtInstance.destroy();
-        // Call the dtTrigger to rerender again
-        this.dtTrigger.next(lista);
-      });
+      // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      //   // Destroy the table first
+      //   dtInstance.destroy();
+      //   // Call the dtTrigger to rerender again
+      //   this.dtTrigger.next(this.dtOptions);
+     // });
+      //this.dtTrigger.next(lista);
+      this.rerender();
     }
   }
 
@@ -232,4 +237,19 @@ export class UserDashboardComponent implements OnInit {
     });
   }
 
+
+  /**
+   * Función para renderizar la tabla tras añadirle nuevos datos o modificarlos.
+   */
+  rerender(): void {
+    this.dtTrigger.next(null);
+    if (this.dtElement.dtInstance) {
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next(null);
+      });
+    } else {
+      this.dtTrigger.next(null);
+    }
+  }
 }

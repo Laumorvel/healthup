@@ -1,11 +1,11 @@
 
-<!-- BARRA DE NAVEGACIÓN / PARA EL HOME -->
+<!-- BARRA DE NAVEGACIÓN  -->
 <div class="row fondoAzulClaro">
   <nav class="navbar navbar-expand-sm navbar-dark py-2 topnav">
     <div class="container-fluid">
       <!--LOGO-->
       <a class="navbar-brand" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <img src="../../assets/img/LOGOH-modified.png" class="icon hoverZoom" />
+        <img src="../../assets/img/LOGOH-modified.png" class="icon hoverZoom" alt="logo"/>
       </a>
 
       <button
@@ -24,19 +24,19 @@
 
           <li class="nav-item hoverZoom">
             <a class="nav-link text-black mx-md-3 mx-sm-3" routerLink="/signUp"  routerLinkActive="active"
-              > <img src="../../assets/img/account.png" class="icon imgIconos signup" />Sign up</a
+              > <img src="../../assets/img/account.png" class="icon imgIconos signup" alt="Signup"/>Sign up</a
             >
           </li>
           <li class="nav-item hoverZoom">
             <a class="nav-link text-black" routerLink="/logIn"  routerLinkActive="active">
-              <img src="../../assets/img/login.png" class="icon login" />Log in</a>
+              <img src="../../assets/img/login.png" class="icon login" alt="login"/>Log in</a>
           </li>
           <li class="nav-item hoverZoom">
             <a
               class="nav-link text-black mx-md-3 mx-sm-3"
               routerLink="/contactUs"  routerLinkActive="active"
               >
-              <img src="../../assets/img/email.png" class="icon imgIconos" />Contact Us</a
+              <img src="../../assets/img/email.png" class="icon imgIconos" alt="Contact us"/>Contact Us</a
             >
           </li>
         </ul>
@@ -46,13 +46,13 @@
           <ul class="navbar-nav position-relative">
 
             <li class="nav-item hoverZoom">
-              <a class="nav-link text-black hover-zoom" routerLink="/userDashboard/{{userId}}"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
-                ><img src="../../assets/img/casa.png" class="icon casa" /> Dashboard</a
+              <a class="nav-link text-black hover-zoom" routerLink="/userDashboard"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                ><img src="../../assets/img/casa.png" class="icon casa" alt="Dashboard"/> Dashboard</a
               >
             </li>
             <li class="nav-item hoverZoom">
               <a class="nav-link text-black" data-bs-toggle="modal" data-bs-target="#exampleModal"  routerLinkActive="active"
-                ><img src="../../assets/img/logout(1).png" class="icon imgIconos" /> Logout</a
+                ><img src="../../assets/img/logout(1).png" class="icon imgIconos" alt="Logout"/> Logout</a
               >
             </li>
           </ul>
@@ -78,8 +78,8 @@
         </div>
 
             <li class="nav-item settings hoverZoom">
-              <a class="text-black" routerLink="/userDashboard/{{userId}}/userSettings"  routerLinkActive="active">
-                <img src="../../assets/img/settings.png" class="icon imgIconos" /> Settings
+              <a class="text-black" routerLink="/userSettings"  routerLinkActive="active">
+                <img src="../../assets/img/settings.png" class="icon imgIconos" alt="Settings"/> Settings
               </a>
             </li>
 

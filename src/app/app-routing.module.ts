@@ -23,7 +23,7 @@ const routes: Routes = [
       import('./sign-up/sign-up.module').then((m) => m.SignUpModule),
   },
   {
-    path: 'userDashboard/:id',
+    path: 'userDashboard',
     canActivate: [AuthGuardGuard],
     loadChildren: () =>
       import('./user-dashboard/user-dashboard.module').then(
@@ -36,7 +36,7 @@ const routes: Routes = [
       import('./contact-us/contact-us.module').then((m) => m.ContactUsModule),
   },
   {
-    path: 'userDashboard/:id/userSettings',
+    path: 'userSettings',
     canActivate: [AuthGuardGuard],
     loadChildren: () =>
       import('./user-settings/user-settings.module').then(

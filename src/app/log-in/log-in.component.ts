@@ -25,7 +25,6 @@ export class LogInComponent implements OnInit {
     }
   }
 
-  //JSON.parse(<string>localStorage.getItem('marcadoRemember'));
 
   ngOnInit(): void {}
 
@@ -45,7 +44,7 @@ export class LogInComponent implements OnInit {
     this.authService.login(this.username, this.password).subscribe({
       next: (resp) => {
         localStorage.setItem('jwt', JSON.stringify(resp.access_token));
-        this.getUser();//envío también el id del usuario logueado
+        this.getUser();
       },
       error: (err) => {
         Swal.fire('Error', err.error.message, 'error');
@@ -57,7 +56,7 @@ export class LogInComponent implements OnInit {
     this.authService.loginGetUser().subscribe(
       (resp) => {
       localStorage.setItem('user', JSON.stringify(resp));
-      this.router.navigateByUrl(`/userDashboard/${resp.id}`);
+      this.router.navigateByUrl(`/userDashboard`);
       localStorage.setItem('userId', JSON.stringify(resp.id));
     });
   }

@@ -64,7 +64,7 @@
       <label class="col-form-label">Password</label>
       <input type="password" class="form-control" formControlName="password" />
       <span class="form-text text-danger" *ngIf="campoNoValido('password')">
-        Passwords must contain at least 6 characters.
+        {{passwordError}}
       </span>
     </div>
 

@@ -75,7 +75,7 @@ export class ContactUsComponent implements OnInit {
       );
     }
 
-    //Mensaje de error genérico
+
     get error(): string{
       const errors = this.miFormulario.get('name')?.errors!
       if(errors['required']){

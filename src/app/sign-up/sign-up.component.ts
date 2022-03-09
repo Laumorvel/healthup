@@ -47,11 +47,11 @@ export class SignUpComponent implements OnInit {
         ],
         [this.emailValidator],
       ],
-      username: [, [Validators.required, Validators.min(0),
+      username: [, [Validators.required,
       ],
       [this.usernameValidator]
     ],
-      password: [, [Validators.required, Validators.min(6)]],
+      password: [, [Validators.required]],
       password2: [, [Validators.required]],
     },
     {
@@ -109,15 +109,24 @@ export class SignUpComponent implements OnInit {
     return '';
   }
 
+  //Mensajes para la contraseña
+  get passwordError(): string{
+    const errors = this.miFormulario.get('password')?.errors!;
+    if(errors['required']){
+      return 'Password required';
+    }
+    return '';
+  }
+
 
   ngOnInit(): void {
     this.miFormulario.reset({
-      name: 'caca',
-      surname: 'caca',
-      email: 'caca@caca.ca',
-      username: 'caca',
-      password: 'cacacaca',
-      password2: 'cacacaca'
+      name: 'pepi',
+      surname: 'pepi',
+      email: 'pepa@gmail.com',
+      username: 'pepa',
+      password: 'pepa',
+      password2: 'pepa'
     });
   }
 
@@ -157,9 +166,9 @@ export class SignUpComponent implements OnInit {
   getUser() {
     this.authService.loginGetUser().subscribe(
       (resp) => {
-      console.log(resp);
       localStorage.setItem('user', JSON.stringify(resp));
-      this.router.navigateByUrl(`/userDashboard/${resp.id}`);
+      localStorage.setItem('userId', JSON.stringify(resp.id));
+      this.router.navigateByUrl(`/userDashboard`);
     });
   }
 }

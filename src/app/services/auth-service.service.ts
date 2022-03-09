@@ -19,7 +19,6 @@ export class AuthServiceService {
       'password': password
     }
     const opcionHeader = new HttpHeaders();
-    //opcionHeader.append('Access-Control-Allow-Origin','*');
     return this.http.post<AuthResponse>(url, body);
   }
 
@@ -32,7 +31,6 @@ export class AuthServiceService {
 
   }
 
-  //Método para poder tener el id de vuelta del usuario
   loginGetUser(){
     const url = `${this.baseUrl}/user`;
     let token = JSON.parse(<string>localStorage.getItem('jwt'));

@@ -12,7 +12,7 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrls: ['./user-dashboard.component.css'],
 })
 export class UserDashboardComponent implements OnInit {
-  ng: any;
+
   constructor(
     private userService: UserService,
     public datepipe: DatePipe,
@@ -27,15 +27,14 @@ export class UserDashboardComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 5,
     };
+    this.dtTrigger.next(this.dtOptions);
     this.cargaUser();
     this.cargaRegistro();
-
 
   }
 
   //---------------------------------ATRIBUTOS:
-
-  @ViewChild(DataTableDirective)//, { static: false }
+  @ViewChild(DataTableDirective, { static: false })
   dtElement!: DataTableDirective;
   user: User = JSON.parse(<string>localStorage.getItem('user'));
   idUser = this.user.id;
@@ -86,13 +85,9 @@ export class UserDashboardComponent implements OnInit {
           .newRegistro( this.creaLogro(tipo, logrado))
           .subscribe(async (resp) => {
             this.registro.push(resp);
-            this.getUser(tipo); //actualizo avance
+            this.getUser(tipo);
             this.rerender();
-            // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-            //   dtInstance.destroy();
-            //   this.dtTrigger.next(this.dtOptions);
-            // });
-            // this.dtTrigger.next(resp);
+            //this.dtTrigger.next(this.dtOptions);
 
           });
       }
@@ -103,19 +98,14 @@ export class UserDashboardComponent implements OnInit {
           index
         );
         if (logro != null) {
-          //Si no lo compruebo, me aparece que la variable puede ser undefined
           logro.logradoDia = logrado;
           this.userService
             .modificaRegistro( logro)
             .subscribe(async (resp) => {
               this.registro.splice(index, 1, resp); //elimino el objeto en esa posición y añado el logro modificado
               this.getUser(tipo);
-              // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-              //   dtInstance.destroy();
-              //   this.dtTrigger.next(this.dtOptions);
-              // });
-              //this.dtTrigger.next(resp);
               this.rerender();
+              //this.dtTrigger.next(this.dtOptions);
             });
         }
       }
@@ -145,13 +135,8 @@ export class UserDashboardComponent implements OnInit {
       this.registro = resp;
       this.cargaRegistroPorTipo('food');
       this.cargaRegistroPorTipo('sport');
-
       this.rerender();
-      // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      //   dtInstance.destroy();
-      //   this.dtTrigger.next(this.dtOptions);
-      // });
-      //this.dtTrigger.next(resp);
+      //this.dtTrigger.next(this.dtOptions);
     });
   }
 
@@ -187,22 +172,12 @@ export class UserDashboardComponent implements OnInit {
 
     if (tipo == 'food') {
       this.registroFood = lista;
-      // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      //   dtInstance.destroy();
-      //   this.dtTrigger.next(this.dtOptions);
-      // });
+      //this.dtTrigger.next(this.dtOptions);
       this.rerender();
-
       //this.dtTrigger.next(lista);
     } else {
       this.registroSport = lista;
-      // this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      //   // Destroy the table first
-      //   dtInstance.destroy();
-      //   // Call the dtTrigger to rerender again
-      //   this.dtTrigger.next(this.dtOptions);
-     // });
-      //this.dtTrigger.next(lista);
+      //this.dtTrigger.next(this.dtOptions);
       this.rerender();
     }
   }
@@ -211,14 +186,14 @@ export class UserDashboardComponent implements OnInit {
    * Consigue la información del usuario y actualiza el avance, la barra de porcentaje y el resgistro de logros por tipo
    * @param tipo
    */
-  async getUser(tipo: string) {
-    await this.authService.loginGetUser().subscribe((resp) => {
+  getUser(tipo: string) {
+     this.authService.loginGetUser().subscribe((resp) => {
       this.user = resp;
       this.avanceFood = resp.avanceSemanaFood;
       this.avanceSport = resp.avanceSemanaSport;
       localStorage.setItem('user', JSON.stringify(resp));
       this.cargaPorcentaje(tipo);
-      this.cargaRegistroPorTipo(tipo); //para actualizar la lista
+      this.cargaRegistroPorTipo(tipo);
     });
   }
 

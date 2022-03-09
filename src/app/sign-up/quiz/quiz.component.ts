@@ -20,6 +20,9 @@ export class QuizComponent implements OnInit {
   rangeFood:number = 1;
   rangeSport:number = 1;
 
+  /**
+   * Consigue y envía por el decorador output los objetivos del usuario que se registra
+   */
   enviaObjetivos(){
     this.objetivos.push(this.rangeFood, this.rangeSport);
     console.log(this.objetivos);

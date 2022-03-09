@@ -8,8 +8,9 @@ import { Component, HostListener, Inject, Input, OnInit } from '@angular/core';
 })
 export class BotonFlotanteComponent implements OnInit {
 
-
-  //el @Input me permite modificar el nombre del botón flotante dependiendo de la página en la que me ecnuentre
+  /**
+   * me permite modificar el nombre del botón flotante dependiendo de la página en la que me ecnuentre
+   */
   @Input() ubicacion: string = '';
 
   windowScrolled: boolean | undefined;

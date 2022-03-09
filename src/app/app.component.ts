@@ -8,14 +8,14 @@ import { filter, Subscription } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'healthup';
-  //https://es.stackoverflow.com/questions/431030/detectar-cambios-de-un-router-en-angular
-
-  public subscriber!: Subscription; //creo la variable para luego destruirla o al recargar el mismo componente puede dar problemas por tener dos subscripciones.
+  public subscriber!: Subscription;
   registrado: boolean = false;
 
+  /**
+   * Comprueba todos los cambios que se realicen en el router --> cada vez que cambie la ruta
+   * @param router
+   */
   constructor(private router: Router) {
-    //Si me suscribo al router con un tipo de navegación, siempre comprobará el router (osea siempre que cambie de página).
     this.subscriber = this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
@@ -23,16 +23,17 @@ export class AppComponent {
       });
   }
 
+  /**
+   * Si la ruta contiene userDashboard o userSettings indica que está logueado
+   */
   checkRuta() {
-    //Si la ruta contiene userDashboard indica que está logueado
-    if (this.router.url.includes('userDashboard')) {
+    if (this.router.url.includes('userDashboard') || (this.router.url.includes('userSettings'))) {
       this.registrado = true;
     }else{
       this.registrado = false;
     }
   }
 
-  //En el onDestroy, valido si mi subscriber sigue activo y me desuscribo, si no seguirá activo escuchando cuando navegue a otro componente donde no lo quiera.
   ngOnDestroy() {
     this.subscriber?.unsubscribe();
   }

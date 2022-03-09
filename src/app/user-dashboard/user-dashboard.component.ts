@@ -1,5 +1,11 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { Logro, User } from '../interfaces/interfaces';
 import { UserService } from '../services/user.service';
@@ -11,8 +17,7 @@ import { DataTableDirective } from 'angular-datatables';
   templateUrl: './user-dashboard.component.html',
   styleUrls: ['./user-dashboard.component.css'],
 })
-export class UserDashboardComponent implements OnInit {
-
+export class UserDashboardComponent implements OnInit, OnDestroy {
   constructor(
     private userService: UserService,
     public datepipe: DatePipe,
@@ -28,21 +33,24 @@ export class UserDashboardComponent implements OnInit {
       pageLength: 5,
     };
     this.dtTrigger.next(this.dtOptions);
+    this.dtTrigger1.next(this.dtOptions);
+    this.dtTrigger2.next(this.dtOptions);
     this.cargaUser();
     this.cargaRegistro();
-
   }
 
   //---------------------------------ATRIBUTOS:
-  @ViewChild(DataTableDirective, { static: false })
-  dtElement!: DataTableDirective;
+  @ViewChildren(DataTableDirective)
+  dtElements: DataTableDirective[] = [];
+  dtTrigger: Subject<any> = new Subject();
+  dtTrigger1: Subject<any> = new Subject();
+  dtTrigger2: Subject<any> = new Subject();
   user: User = JSON.parse(<string>localStorage.getItem('user'));
   idUser = this.user.id;
   registro: Logro[] = [];
   registroFood: Logro[] = [];
   registroSport: Logro[] = [];
   dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
   enviadoFood: boolean = false;
   enviadoSport: boolean = false;
   private fechaHoy = this.datepipe.transform(new Date(), 'dd-MM-yyyy');
@@ -52,8 +60,6 @@ export class UserDashboardComponent implements OnInit {
   avanceSport: number = this.user.avanceSemanaSport;
   porcentajeSport: string = '0';
   porcentajeFood: string = '0';
-
-
 
   //--------------------------------MÉTODOS:
 
@@ -82,13 +88,12 @@ export class UserDashboardComponent implements OnInit {
       //SE PULSA POR PRIMERA VEZ ESE DÍA (POST)
       if (index == -1) {
         this.userService
-          .newRegistro( this.creaLogro(tipo, logrado))
+          .newRegistro(this.creaLogro(tipo, logrado))
           .subscribe(async (resp) => {
             this.registro.push(resp);
             this.getUser(tipo);
             this.rerender();
             //this.dtTrigger.next(this.dtOptions);
-
           });
       }
       //SE CAMBIA EL LOGRO DE TRUE A FALSE (put)
@@ -99,14 +104,12 @@ export class UserDashboardComponent implements OnInit {
         );
         if (logro != null) {
           logro.logradoDia = logrado;
-          this.userService
-            .modificaRegistro( logro)
-            .subscribe(async (resp) => {
-              this.registro.splice(index, 1, resp); //elimino el objeto en esa posición y añado el logro modificado
-              this.getUser(tipo);
-              this.rerender();
-              //this.dtTrigger.next(this.dtOptions);
-            });
+          this.userService.modificaRegistro(logro).subscribe(async (resp) => {
+            this.registro.splice(index, 1, resp); //elimino el objeto en esa posición y añado el logro modificado
+            this.getUser(tipo);
+            this.rerender();
+            //this.dtTrigger.next(this.dtOptions);
+          });
         }
       }
     }
@@ -187,7 +190,7 @@ export class UserDashboardComponent implements OnInit {
    * @param tipo
    */
   getUser(tipo: string) {
-     this.authService.loginGetUser().subscribe((resp) => {
+    this.authService.loginGetUser().subscribe((resp) => {
       this.user = resp;
       this.avanceFood = resp.avanceSemanaFood;
       this.avanceSport = resp.avanceSemanaSport;
@@ -212,12 +215,11 @@ export class UserDashboardComponent implements OnInit {
     });
   }
 
-
   /**
    * Función para renderizar la tabla tras añadirle nuevos datos o modificarlos.
    */
   rerender(): void {
-    this.dtTrigger.next(null);
+    /*this.dtTrigger.next(null);
     if (this.dtElement.dtInstance) {
       this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
         dtInstance.destroy();
@@ -225,6 +227,21 @@ export class UserDashboardComponent implements OnInit {
       });
     } else {
       this.dtTrigger.next(null);
-    }
+    }*/
+    this.dtElements.forEach((dtElement: DataTableDirective) => {
+      if (dtElement.dtInstance)
+        dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          dtInstance.destroy();
+        });
+    });
+    this.dtTrigger.next(this.dtOptions);
+    this.dtTrigger1.next(this.dtOptions);
+    this.dtTrigger2.next(this.dtOptions);
+  }
+
+  ngOnDestroy() {
+    this.registro = [];
+    this.registroFood = [];
+    this.registroSport = [];
   }
 }

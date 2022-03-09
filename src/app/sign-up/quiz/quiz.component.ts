@@ -25,7 +25,6 @@ export class QuizComponent implements OnInit {
    */
   enviaObjetivos(){
     this.objetivos.push(this.rangeFood, this.rangeSport);
-    console.log(this.objetivos);
     this.sendObjetivos.emit(this.objetivos);
   }
 

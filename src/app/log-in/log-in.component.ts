@@ -56,7 +56,8 @@ export class LogInComponent implements OnInit {
     this.authService.loginGetUser().subscribe(
       (resp) => {
       localStorage.setItem('user', JSON.stringify(resp));
-      this.router.navigateByUrl(`/userDashboard`);
+      //this.router.navigateByUrl(`/userDashboard`);
+      window.location.href = 'http://localhost:4200/userDashboard';
       localStorage.setItem('userId', JSON.stringify(resp.id));
     });
   }

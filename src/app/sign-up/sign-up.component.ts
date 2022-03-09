@@ -168,7 +168,8 @@ export class SignUpComponent implements OnInit {
       (resp) => {
       localStorage.setItem('user', JSON.stringify(resp));
       localStorage.setItem('userId', JSON.stringify(resp.id));
-      this.router.navigateByUrl(`/userDashboard`);
+      //this.router.navigateByUrl(`/userDashboard`);
+      window.location.href = 'http://localhost:4200/userDashboard';
     });
   }
 }
